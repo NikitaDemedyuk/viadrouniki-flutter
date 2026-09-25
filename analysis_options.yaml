@@ -1,7 +1,14 @@
-include: package:flutter_lints/flutter.yaml
+include: package:very_good_analysis/analysis_options.yaml
 
 analyzer:
   exclude:
     - build/**
     - android/**
     - ios/**
+    - lib/core/l10n/gen/**
+
+linter:
+  rules:
+    # This is an app, not a published package: doc comments are written where
+    # the "why" is non-obvious, not on every public member.
+    public_member_api_docs: false
