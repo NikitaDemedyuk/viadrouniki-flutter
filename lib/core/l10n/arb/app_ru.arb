@@ -1,0 +1,7 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Вядроўнікі",
+  "@appTitle": {
+    "description": "Brand name shown as the app title. Written in Belarusian in every locale, as on viadrouniki.by."
+  }
+}
