@@ -10,9 +10,6 @@
   "enabledPlugins": {
     "dart-flutter@dart-flutter": true
   },
-  "env": {
-    "DART_ROOT": ".fvm/flutter_sdk/bin/cache/dart-sdk"
-  },
   "deniedMcpServers": [
     { "serverName": "dart-mcp-server" },
     { "serverCommand": ["dart", "mcp-server"] }

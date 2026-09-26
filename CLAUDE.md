@@ -41,12 +41,11 @@ fvm flutter build apk --debug
 ## Claude Code
 
 - `.claude/settings.json` enables the official **Dart and Flutter plugin**
-  (`dart-flutter@dart-flutter`, from `github.com/flutter/agent-plugins`): its skills and its MCP
-  server.
-- The plugin starts its MCP server with a bare `dart`, which is the global 3.38.9. That launcher
-  always exports its own `FLUTTER_ROOT`, so the plugin server's Flutter-driven tools (`run_tests`,
-  `pub`, `launch_app`) fail here with "requires SDK version ^3.13.4". `DART_ROOT` in the settings
-  only keeps its *analysis* on Dart 3.13.4.
+  (`dart-flutter@dart-flutter`, from `github.com/flutter/agent-plugins`) for its skills.
+- The plugin would start its MCP server with a bare `dart`, which is the global 3.38.9. That
+  launcher always exports its own `FLUTTER_ROOT`, so no setting can move that server onto the
+  pinned SDK, and its Flutter-driven tools (`run_tests`, `pub`, `launch_app`) fail here with
+  "requires SDK version ^3.13.4".
 - **`.mcp.json` adds a `dart` server run through `fvm dart mcp-server`**, so every tool runs on
   3.47.5; use its `mcp__dart__*` tools. The plugin's own server is blocked by `deniedMcpServers` in
   `.claude/settings.json` (by name and by its exact `dart mcp-server` command, which the `fvm`
