@@ -113,8 +113,33 @@ fvm flutter build apk --debug
 - It enforces Dart 3.13's abbreviated constructors: `const new({super.key})` instead of repeating the
   class name. Call sites are unchanged (`const ViadrounikiApp()`). `dart fix --apply` converts
   existing code.
-- Comments explain *why*, never *what*: a hidden backend behaviour, a deliberate deviation, a trap
-  someone would otherwise "fix". Default to none.
+
+## Comments
+
+Comments are for people reading the code, not for Claude or other tools: project context lives in
+this file. **Default to none.** Names, types and tests say *what* the code does.
+
+- **Write one only for a *why* the code can't show:** a hidden backend behaviour, a deliberate
+  deviation from a convention, a platform or SDK quirk, or a trap someone would otherwise "fix".
+  One or two lines.
+- **Never:**
+  - restate the code (`// Emit the new mode`, `/// The only two languages` above a two-value
+    enum);
+  - describe plans or future work (`later`, `will`, `TODO`) — that belongs in an issue or a PR;
+  - tell the history of the code (`previously`, `changed to`) — that belongs in the commit message;
+  - mention PR numbers, internal plans or tools.
+- `///` documents a declaration and appears in IDE hovers; `//` explains a line inside a body.
+  `public_member_api_docs` is off, so a public member without a doc comment is fine.
+- A comment that no longer matches the code is worse than none: update or delete it in the same
+  change.
+
+Example — a *what* that the enum already says, versus the *why* nobody could guess:
+
+```dart
+/// The only two locales the API and l10n support.               // ✗ restates the enum
+/// The API serves content only in ru and be; `locale=en`
+/// silently returns Russian, so English would mix languages.   // ✓ hidden backend behaviour
+```
 
 ## Architecture (rules for code as it lands)
 
