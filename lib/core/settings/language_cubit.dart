@@ -16,7 +16,7 @@ class LanguageCubit extends Cubit<AppLanguage> {
 
   Future<void> setLanguage(AppLanguage language) async {
     if (language == state) return;
-    emit(language);
     await _preferences.setString(_languageKey, language.code);
+    emit(language);
   }
 }

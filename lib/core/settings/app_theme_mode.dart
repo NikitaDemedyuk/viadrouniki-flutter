@@ -3,8 +3,16 @@ enum AppThemeMode {
   light,
   dark;
 
-  static AppThemeMode fromName(String name) => values.firstWhere(
-    (mode) => mode.name == name,
+  static AppThemeMode fromCode(String code) => values.firstWhere(
+    (mode) => mode.code == code,
     orElse: () => AppThemeMode.system,
   );
+}
+
+extension AppThemeModeCode on AppThemeMode {
+  String get code => switch (this) {
+    AppThemeMode.system => 'system',
+    AppThemeMode.light => 'light',
+    AppThemeMode.dark => 'dark',
+  };
 }
