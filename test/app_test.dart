@@ -1,11 +1,20 @@
 import 'package:flutter/cupertino.dart' show CupertinoLocalizations;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:viadrouniki/app.dart';
+import 'package:viadrouniki/core/di/injection.dart';
 import 'package:viadrouniki/core/l10n/gen/app_localizations.dart';
 
 void main() {
   group('ViadrounikiApp', () {
+    setUp(() async {
+      SharedPreferences.setMockInitialValues({});
+      await configureDependencies();
+    });
+
+    tearDown(getIt.reset);
+
     testWidgets('starts in Russian regardless of the device locale', (
       tester,
     ) async {
