@@ -5,8 +5,8 @@ import 'package:viadrouniki/core/settings/app_theme_mode.dart';
 class ThemeCubit extends Cubit<AppThemeMode> {
   new(this._preferences)
     : super(
-        AppThemeMode.fromName(
-          _preferences.getString(_themeModeKey) ?? AppThemeMode.system.name,
+        AppThemeMode.fromCode(
+          _preferences.getString(_themeModeKey) ?? AppThemeMode.system.code,
         ),
       );
 
@@ -16,7 +16,7 @@ class ThemeCubit extends Cubit<AppThemeMode> {
 
   Future<void> setThemeMode(AppThemeMode mode) async {
     if (mode == state) return;
+    await _preferences.setString(_themeModeKey, mode.code);
     emit(mode);
-    await _preferences.setString(_themeModeKey, mode.name);
   }
 }
