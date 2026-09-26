@@ -23,6 +23,9 @@ When code and this file disagree, find out which is wrong and fix that one.
 - FVM is installed with `dart pub global activate fvm`, then `fvm install` in the repo.
 - VS Code uses the pinned SDK through the committed `.vscode/settings.json`. Android Studio must be
   pointed at `.fvm/flutter_sdk` by hand.
+- **Line width is 80**, Dart's default, which `dart format` uses because `analysis_options.yaml` sets no
+  `page_width`. `.vscode/settings.json` pins `"dart.lineLength": 80` so a personal VS Code
+  `dart.lineLength` can't make Format Document disagree with `dart format --set-exit-if-changed`.
 - Gradle runs on JDK 21 LTS via `flutter config --jdk-dir=<jdk-21 home>` (a machine-wide Flutter
   setting). Android Studio's bundled Java 25 also works but prints JEP 472 "restricted method"
   warnings from Gradle's `native-platform` library.
