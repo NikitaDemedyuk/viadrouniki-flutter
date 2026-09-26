@@ -38,6 +38,22 @@ fvm flutter build ios --simulator --debug
 fvm flutter build apk --debug
 ```
 
+## Claude Code
+
+- `.claude/settings.json` enables the official **Dart and Flutter plugin**
+  (`dart-flutter@dart-flutter`, from `github.com/flutter/agent-plugins`): its skills and its MCP
+  server.
+- The plugin starts its MCP server with a bare `dart`, which is the global 3.38.9. That launcher
+  always exports its own `FLUTTER_ROOT`, so the plugin server's Flutter-driven tools (`run_tests`,
+  `pub`, `launch_app`) fail here with "requires SDK version ^3.13.4". `DART_ROOT` in the settings
+  only keeps its *analysis* on Dart 3.13.4.
+- **`.mcp.json` adds a `dart` server run through `fvm dart mcp-server`**, so every tool runs on
+  3.47.5. Use its `mcp__dart__*` tools, and turn off `plugin:dart-flutter:dart-mcp-server` once per
+  machine in `/mcp`. The plugin's skills keep working without it.
+- The pinned server (1.1.2) has no `run_tests`, `launch_app` or `dart_format`: it attaches to an
+  app already started with `fvm flutter run`, through `dtd`, for hot reload, runtime errors and
+  the widget inspector. Run tests, formatting and builds with the commands above.
+
 ## Branches and PRs
 
 - **`develop`** is the default branch and the base of every PR. **`main`** is release-only and stays
