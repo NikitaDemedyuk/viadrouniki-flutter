@@ -52,7 +52,6 @@ abstract final class AppTheme {
         );
 
     return ThemeData(
-      brightness: brightness,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: isDark
           ? AppColors.backgroundDark
