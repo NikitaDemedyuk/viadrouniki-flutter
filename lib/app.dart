@@ -27,8 +27,8 @@ class ViadrounikiApp extends StatelessWidget {
           return MaterialApp(
             onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
             locale: language.toLocale(),
-            theme: AppTheme.light(),
-            darkTheme: AppTheme.dark(),
+            theme: AppTheme.light,
+            darkTheme: AppTheme.dark,
             themeMode: themeMode.toThemeMode(),
             supportedLocales: AppLocalizations.supportedLocales,
             localizationsDelegates: AppLocalizations.localizationsDelegates,

@@ -9,9 +9,9 @@ import 'package:viadrouniki/core/theme/app_radius.dart';
 /// unset and falls back to the platform default until a licensed source is
 /// bundled.
 abstract final class AppTheme {
-  static ThemeData light() => _theme(brightness: Brightness.light);
+  static final ThemeData light = _theme(brightness: Brightness.light);
 
-  static ThemeData dark() => _theme(brightness: Brightness.dark);
+  static final ThemeData dark = _theme(brightness: Brightness.dark);
 
   static ThemeData _theme({required Brightness brightness}) {
     final isDark = brightness == Brightness.dark;

@@ -9,7 +9,7 @@ import 'package:viadrouniki/core/theme/app_theme.dart';
 void main() {
   group('AppTheme', () {
     test('light theme uses the web app light tokens', () {
-      final theme = AppTheme.light();
+      final theme = AppTheme.light;
 
       expect(theme.brightness, Brightness.light);
       expect(theme.colorScheme.primary, AppColors.primary);
@@ -19,7 +19,7 @@ void main() {
     });
 
     test('dark theme uses the web app dark tokens', () {
-      final theme = AppTheme.dark();
+      final theme = AppTheme.dark;
 
       expect(theme.brightness, Brightness.dark);
       expect(theme.colorScheme.primary, AppColors.primary);
@@ -29,18 +29,18 @@ void main() {
     });
 
     test('containers stay neutral instead of taking the seed tint', () {
-      final light = AppTheme.light().colorScheme;
+      final light = AppTheme.light.colorScheme;
       expect(light.surfaceContainerLowest, AppColors.surfaceLight);
       expect(light.surfaceContainerLow, AppColors.surfaceLight);
       expect(light.surfaceContainerHigh, AppColors.surfaceLight);
 
-      final dark = AppTheme.dark().colorScheme;
+      final dark = AppTheme.dark.colorScheme;
       expect(dark.surfaceContainerLowest, AppColors.backgroundDark);
       expect(dark.surfaceContainerLow, AppColors.surfaceDark);
       expect(dark.surfaceContainerHigh, AppColors.surfaceElevatedDark);
     });
 
-    for (final theme in [AppTheme.light(), AppTheme.dark()]) {
+    for (final theme in [AppTheme.light, AppTheme.dark]) {
       final scheme = theme.colorScheme;
       test('${scheme.brightness.name} accents meet WCAG AA contrast', () {
         final pairs = {
@@ -61,7 +61,7 @@ void main() {
     }
 
     test('cards use a 12px radius and buttons a 6px radius', () {
-      final theme = AppTheme.light();
+      final theme = AppTheme.light;
 
       final cardShape = theme.cardTheme.shape! as RoundedRectangleBorder;
       expect(cardShape.borderRadius, BorderRadius.circular(AppRadius.card));
