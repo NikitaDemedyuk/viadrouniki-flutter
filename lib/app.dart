@@ -5,6 +5,7 @@ import 'package:viadrouniki/core/settings/app_language.dart';
 import 'package:viadrouniki/core/settings/app_theme_mode.dart';
 import 'package:viadrouniki/core/settings/language_cubit.dart';
 import 'package:viadrouniki/core/settings/theme_cubit.dart';
+import 'package:viadrouniki/core/theme/app_theme.dart';
 
 class ViadrounikiApp extends StatelessWidget {
   const new({required this.languageCubit, required this.themeCubit, super.key});
@@ -26,6 +27,8 @@ class ViadrounikiApp extends StatelessWidget {
           return MaterialApp(
             onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
             locale: language.toLocale(),
+            theme: AppTheme.light,
+            darkTheme: AppTheme.dark,
             themeMode: themeMode.toThemeMode(),
             supportedLocales: AppLocalizations.supportedLocales,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
