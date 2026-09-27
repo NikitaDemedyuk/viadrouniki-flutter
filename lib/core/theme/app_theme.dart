@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:viadrouniki/core/theme/app_colors.dart';
+import 'package:viadrouniki/core/theme/app_radius.dart';
 
 /// Material 3 theme styled after the web app, viadrouniki.by.
 ///
@@ -59,32 +60,32 @@ abstract final class AppTheme {
           : AppColors.backgroundLight,
       cardTheme: const CardThemeData(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
+          borderRadius: BorderRadius.all(Radius.circular(AppRadius.card)),
         ),
       ),
       inputDecorationTheme: const InputDecorationTheme(
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(6)),
+          borderRadius: BorderRadius.all(Radius.circular(AppRadius.control)),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(6)),
+            borderRadius: BorderRadius.all(Radius.circular(AppRadius.control)),
           ),
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(6)),
+            borderRadius: BorderRadius.all(Radius.circular(AppRadius.control)),
           ),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(6)),
+            borderRadius: BorderRadius.all(Radius.circular(AppRadius.control)),
           ),
         ),
       ),

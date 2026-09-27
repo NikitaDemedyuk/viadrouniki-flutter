@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:viadrouniki/core/theme/app_colors.dart';
+import 'package:viadrouniki/core/theme/app_radius.dart';
 import 'package:viadrouniki/core/theme/app_theme.dart';
 
 void main() {
@@ -63,12 +64,15 @@ void main() {
       final theme = AppTheme.light();
 
       final cardShape = theme.cardTheme.shape! as RoundedRectangleBorder;
-      expect(cardShape.borderRadius, BorderRadius.circular(12));
+      expect(cardShape.borderRadius, BorderRadius.circular(AppRadius.card));
 
       final buttonShape =
           theme.elevatedButtonTheme.style!.shape!.resolve({})!
               as RoundedRectangleBorder;
-      expect(buttonShape.borderRadius, BorderRadius.circular(6));
+      expect(
+        buttonShape.borderRadius,
+        BorderRadius.circular(AppRadius.control),
+      );
     });
   });
 }
