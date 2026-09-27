@@ -20,9 +20,13 @@ abstract final class AppTheme {
           brightness: brightness,
         ).copyWith(
           primary: AppColors.primary,
+          onPrimary: AppColors.onAccent,
           secondary: AppColors.gold,
+          onSecondary: AppColors.onAccent,
           tertiary: AppColors.info,
+          onTertiary: AppColors.onAccent,
           error: AppColors.error,
+          onError: AppColors.onAccent,
           surface: isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
           onSurface: isDark
               ? AppColors.onSurfaceDark
@@ -30,8 +34,17 @@ abstract final class AppTheme {
           onSurfaceVariant: isDark
               ? AppColors.onSurfaceVariantDark
               : AppColors.onSurfaceVariantLight,
+          surfaceContainerLowest: isDark
+              ? AppColors.backgroundDark
+              : AppColors.surfaceLight,
+          surfaceContainerLow: isDark
+              ? AppColors.surfaceDark
+              : AppColors.surfaceLight,
           surfaceContainer: isDark
               ? AppColors.surfaceDark
+              : AppColors.surfaceLight,
+          surfaceContainerHigh: isDark
+              ? AppColors.surfaceElevatedDark
               : AppColors.surfaceLight,
           surfaceContainerHighest: isDark
               ? AppColors.surfaceElevatedDark

@@ -8,6 +8,10 @@ abstract final class AppColors {
   static const info = Color(0xFF1677FF);
   static const error = Color(0xFFFF4D4F);
 
+  // The web app puts white text on the accents above, which fails WCAG AA
+  // contrast on every one of them (as low as 1.9:1 on gold).
+  static const onAccent = Color(0xFF0A0A0A);
+
   static const backgroundLight = Color(0xFFF5F5F5);
   static const surfaceLight = Color(0xFFFFFFFF);
 
