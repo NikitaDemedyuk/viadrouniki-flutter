@@ -5,8 +5,8 @@ import 'package:viadrouniki/core/theme/app_radius.dart';
 /// Material 3 theme styled after the web app, viadrouniki.by.
 ///
 /// The web app sets "SN Pro" as its font, self-hosted from its own build
-/// with no public license confirmed yet, so this theme leaves `fontFamily`
-/// unset and falls back to the platform default.
+/// with no public license found, so this theme leaves `fontFamily` unset and
+/// falls back to the platform default.
 abstract final class AppTheme {
   static final ThemeData light = _theme(brightness: Brightness.light);
 
