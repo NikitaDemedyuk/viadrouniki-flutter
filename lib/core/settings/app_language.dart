@@ -1,7 +1,3 @@
-// Keep this to exactly ru/be. A device locale outside that pair isn't a
-// safe fallback: Flutter would silently pick whichever supported locale
-// sorts first (be), not ru, and the API just returns Russian for any other
-// locale value.
 enum AppLanguage {
   ru,
   be;
@@ -13,6 +9,8 @@ enum AppLanguage {
 }
 
 extension AppLanguageCode on AppLanguage {
+  /// The persisted value, spelled out rather than `name` so renaming a
+  /// value doesn't silently reset a saved setting.
   String get code => switch (this) {
     AppLanguage.ru => 'ru',
     AppLanguage.be => 'be',
