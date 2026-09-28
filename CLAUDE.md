@@ -104,8 +104,8 @@ fvm flutter build apk --debug
 - Generated code in `lib/core/l10n/gen/` is gitignored and excluded from analysis; `pub get`
   recreates it.
 - **The language is app-controlled, never the device's.** With a device locale outside ru/be,
-  Flutter would fall back to whichever supported locale sorts first (`be`). The app pins `ru`
-  until the persisted language setting lands, and must keep choosing explicitly after that.
+  Flutter would fall back to whichever supported locale sorts first (`be`), so `MaterialApp.locale`
+  is always set, from `LanguageCubit`'s saved language (default `ru`).
 - Flutter ships Material, Cupertino and Widgets strings for `be` — unlike iOS, which has no
   Belarusian system language — so system UI needs no extra work.
 - The brand name «Вядроўнікі» is Belarusian in every locale, as on the web.
@@ -160,8 +160,8 @@ static const onAccent = Color(0xFF0A0A0A);
 - Widgets hold no business logic and make no network calls. Presentation mappings (a colour or icon
   for a model value) live in `presentation/` extensions, not on models.
 - Errors: a sealed `Result`/`AppException`, not exceptions thrown through blocs.
-- Global error handling uses `FlutterError.onError` and `PlatformDispatcher.instance.onError` —
-  **not** `runZonedGuarded`.
+- Global error handling goes through `FlutterError.onError` (left at Flutter's default, which
+  presents the error) and `PlatformDispatcher.instance.onError` — **not** `runZonedGuarded`.
 - No flavors and no `bootstrap()` file: there is one backend.
 
 ## API facts
