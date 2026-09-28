@@ -21,6 +21,7 @@ abstract final class AppTheme {
         ).copyWith(
           primary: AppColors.primary,
           onPrimary: AppColors.onAccent,
+          surfaceTint: AppColors.primary,
           secondary: AppColors.gold,
           onSecondary: AppColors.onAccent,
           tertiary: AppColors.info,

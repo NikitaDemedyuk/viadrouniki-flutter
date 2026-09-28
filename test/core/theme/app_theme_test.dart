@@ -41,6 +41,12 @@ void main() {
     });
 
     for (final theme in [AppTheme.light, AppTheme.dark]) {
+      test('${theme.brightness.name} scroll tint is the brand green', () {
+        expect(theme.colorScheme.surfaceTint, AppColors.primary);
+      });
+    }
+
+    for (final theme in [AppTheme.light, AppTheme.dark]) {
       final scheme = theme.colorScheme;
       test('${scheme.brightness.name} control fill stands out from the '
           'surface', () {
