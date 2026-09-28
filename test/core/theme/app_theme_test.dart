@@ -100,19 +100,36 @@ void main() {
       });
     }
 
-    test('cards use a 12px radius and buttons a 6px radius', () {
-      final theme = AppTheme.light;
-
-      final cardShape = theme.cardTheme.shape! as RoundedRectangleBorder;
+    test('cards use a 12px radius', () {
+      final cardShape =
+          AppTheme.light.cardTheme.shape! as RoundedRectangleBorder;
       expect(cardShape.borderRadius, BorderRadius.circular(AppRadius.card));
+    });
 
-      final buttonShape =
-          theme.elevatedButtonTheme.style!.shape!.resolve({})!
-              as RoundedRectangleBorder;
-      expect(
-        buttonShape.borderRadius,
-        BorderRadius.circular(AppRadius.control),
-      );
+    test('buttons and inputs use a 6px radius', () {
+      final theme = AppTheme.light;
+      final controlRadius = BorderRadius.circular(AppRadius.control);
+
+      final buttonStyles = {
+        'filled': theme.filledButtonTheme.style,
+        'elevated': theme.elevatedButtonTheme.style,
+        'outlined': theme.outlinedButtonTheme.style,
+        'text': theme.textButtonTheme.style,
+        'segmented': theme.segmentedButtonTheme.style,
+      };
+      for (final MapEntry(key: name, value: style) in buttonStyles.entries) {
+        final shape = style?.shape?.resolve({});
+        expect(shape, isA<RoundedRectangleBorder>(), reason: name);
+        expect(
+          (shape! as RoundedRectangleBorder).borderRadius,
+          controlRadius,
+          reason: name,
+        );
+      }
+
+      final inputBorder =
+          theme.inputDecorationTheme.border! as OutlineInputBorder;
+      expect(inputBorder.borderRadius, controlRadius);
     });
   });
 }

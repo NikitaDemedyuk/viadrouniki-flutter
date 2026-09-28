@@ -12,6 +12,13 @@ abstract final class AppTheme {
 
   static final ThemeData dark = _theme(brightness: Brightness.dark);
 
+  static const _controlRadius = BorderRadius.all(
+    Radius.circular(AppRadius.control),
+  );
+  static const _controlShape = RoundedRectangleBorder(
+    borderRadius: _controlRadius,
+  );
+
   static ThemeData _theme({required Brightness brightness}) {
     final isDark = brightness == Brightness.dark;
     final colorScheme =
@@ -63,30 +70,22 @@ abstract final class AppTheme {
         ),
       ),
       inputDecorationTheme: const InputDecorationTheme(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(AppRadius.control)),
-        ),
+        border: OutlineInputBorder(borderRadius: _controlRadius),
       ),
       filledButtonTheme: FilledButtonThemeData(
-        style: FilledButton.styleFrom(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(AppRadius.control)),
-          ),
-        ),
+        style: FilledButton.styleFrom(shape: _controlShape),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(AppRadius.control)),
-          ),
-        ),
+        style: ElevatedButton.styleFrom(shape: _controlShape),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(AppRadius.control)),
-          ),
-        ),
+        style: OutlinedButton.styleFrom(shape: _controlShape),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(shape: _controlShape),
+      ),
+      segmentedButtonTheme: SegmentedButtonThemeData(
+        style: SegmentedButton.styleFrom(shape: _controlShape),
       ),
     );
   }
