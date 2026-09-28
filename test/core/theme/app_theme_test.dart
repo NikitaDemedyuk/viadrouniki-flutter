@@ -41,6 +41,24 @@ void main() {
     });
 
     for (final theme in [AppTheme.light, AppTheme.dark]) {
+      test('${theme.brightness.name} scroll tint is the brand green', () {
+        expect(theme.colorScheme.surfaceTint, AppColors.primary);
+      });
+    }
+
+    for (final theme in [AppTheme.light, AppTheme.dark]) {
+      final scheme = theme.colorScheme;
+      test('${scheme.brightness.name} control fill stands out from the '
+          'surface', () {
+        expect(scheme.surfaceContainerHighest, isNot(scheme.surface));
+        expect(
+          scheme.surfaceContainerHighest,
+          isNot(scheme.surfaceContainerHigh),
+        );
+      });
+    }
+
+    for (final theme in [AppTheme.light, AppTheme.dark]) {
       final scheme = theme.colorScheme;
       test('${scheme.brightness.name} accents meet WCAG AA contrast', () {
         final pairs = {
@@ -60,19 +78,58 @@ void main() {
       });
     }
 
-    test('cards use a 12px radius and buttons a 6px radius', () {
-      final theme = AppTheme.light;
+    for (final theme in [AppTheme.light, AppTheme.dark]) {
+      final scheme = theme.colorScheme;
+      test('${scheme.brightness.name} text is opaque and readable', () {
+        final backgrounds = {
+          'surface': scheme.surface,
+          'background': theme.scaffoldBackgroundColor,
+          'fill': scheme.surfaceContainerHighest,
+        };
+        for (final text in [scheme.onSurface, scheme.onSurfaceVariant]) {
+          expect(text.a, 1);
+          for (final MapEntry(key: name, value: background)
+              in backgrounds.entries) {
+            expect(
+              _contrast(background, text),
+              greaterThanOrEqualTo(4.5),
+              reason: name,
+            );
+          }
+        }
+      });
+    }
 
-      final cardShape = theme.cardTheme.shape! as RoundedRectangleBorder;
+    test('cards use a 12px radius', () {
+      final cardShape =
+          AppTheme.light.cardTheme.shape! as RoundedRectangleBorder;
       expect(cardShape.borderRadius, BorderRadius.circular(AppRadius.card));
+    });
 
-      final buttonShape =
-          theme.elevatedButtonTheme.style!.shape!.resolve({})!
-              as RoundedRectangleBorder;
-      expect(
-        buttonShape.borderRadius,
-        BorderRadius.circular(AppRadius.control),
-      );
+    test('buttons and inputs use a 6px radius', () {
+      final theme = AppTheme.light;
+      final controlRadius = BorderRadius.circular(AppRadius.control);
+
+      final buttonStyles = {
+        'filled': theme.filledButtonTheme.style,
+        'elevated': theme.elevatedButtonTheme.style,
+        'outlined': theme.outlinedButtonTheme.style,
+        'text': theme.textButtonTheme.style,
+        'segmented': theme.segmentedButtonTheme.style,
+      };
+      for (final MapEntry(key: name, value: style) in buttonStyles.entries) {
+        final shape = style?.shape?.resolve({});
+        expect(shape, isA<RoundedRectangleBorder>(), reason: name);
+        expect(
+          (shape! as RoundedRectangleBorder).borderRadius,
+          controlRadius,
+          reason: name,
+        );
+      }
+
+      final inputBorder =
+          theme.inputDecorationTheme.border! as OutlineInputBorder;
+      expect(inputBorder.borderRadius, controlRadius);
     });
   });
 }
