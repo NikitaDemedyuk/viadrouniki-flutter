@@ -12,6 +12,7 @@ abstract final class AppColors {
 
   static const backgroundLight = Color(0xFFF5F5F5);
   static const surfaceLight = Color(0xFFFFFFFF);
+  static const fillLight = Color(0xFFF0F0F0);
 
   static const onSurfaceLight = Color(0xE0000000);
   static const onSurfaceVariantLight = Color(0xA6000000);
@@ -19,6 +20,7 @@ abstract final class AppColors {
   static const backgroundDark = Color(0xFF0A0A0A);
   static const surfaceDark = Color(0xFF141414);
   static const surfaceElevatedDark = Color(0xFF1F1F1F);
+  static const fillDark = Color(0xFF303030);
 
   static const onSurfaceDark = Color(0xD9FFFFFF);
   static const onSurfaceVariantDark = Color(0xA6FFFFFF);

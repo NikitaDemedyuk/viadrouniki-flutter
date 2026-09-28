@@ -47,8 +47,8 @@ abstract final class AppTheme {
               ? AppColors.surfaceElevatedDark
               : AppColors.surfaceLight,
           surfaceContainerHighest: isDark
-              ? AppColors.surfaceElevatedDark
-              : AppColors.surfaceLight,
+              ? AppColors.fillDark
+              : AppColors.fillLight,
         );
 
     return ThemeData(

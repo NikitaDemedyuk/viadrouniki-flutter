@@ -42,6 +42,18 @@ void main() {
 
     for (final theme in [AppTheme.light, AppTheme.dark]) {
       final scheme = theme.colorScheme;
+      test('${scheme.brightness.name} control fill stands out from the '
+          'surface', () {
+        expect(scheme.surfaceContainerHighest, isNot(scheme.surface));
+        expect(
+          scheme.surfaceContainerHighest,
+          isNot(scheme.surfaceContainerHigh),
+        );
+      });
+    }
+
+    for (final theme in [AppTheme.light, AppTheme.dark]) {
+      final scheme = theme.colorScheme;
       test('${scheme.brightness.name} accents meet WCAG AA contrast', () {
         final pairs = {
           'primary': (scheme.primary, scheme.onPrimary),
