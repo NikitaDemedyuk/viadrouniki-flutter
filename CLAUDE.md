@@ -122,6 +122,9 @@ fvm flutter build apk --debug
 Comments are for people reading the code, not for Claude or other tools: project context lives in
 this file. **Default to none.** Names, types and tests say *what* the code does.
 
+- **A fact that holds across the project goes here, not in the code.** An API quirk or a
+  convention is stated once in this file and not repeated in a comment; a comment carries only a
+  *why* that is true of the line it sits on.
 - **Write one only for a *why* the code can't show:** a hidden backend behaviour, a deliberate
   deviation from a convention, a platform or SDK quirk, or a trap someone would otherwise "fix".
   One or two lines.
@@ -136,12 +139,13 @@ this file. **Default to none.** Names, types and tests say *what* the code does.
 - A comment that no longer matches the code is worse than none: update or delete it in the same
   change.
 
-Example — a *what* that the enum already says, versus the *why* nobody could guess:
+Example — a *what* that the code already says, versus the *why* nobody could guess:
 
 ```dart
-/// The only two locales the API and l10n support.               // ✗ restates the enum
-/// The API serves content only in ru and be; `locale=en`
-/// silently returns Russian, so English would mix languages.   // ✓ hidden backend behaviour
+/// Near-black text for the accent colours.                 // ✗ restates the value
+/// The web app puts white text on these accents, which
+/// fails WCAG AA contrast on every one (1.9:1 on gold).   // ✓ deliberate deviation
+static const onAccent = Color(0xFF0A0A0A);
 ```
 
 ## Architecture (rules for code as it lands)
