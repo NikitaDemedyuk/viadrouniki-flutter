@@ -15,6 +15,7 @@ abstract final class AppTheme {
   static const _controlRadius = BorderRadius.all(
     Radius.circular(AppRadius.control),
   );
+
   static const _controlShape = RoundedRectangleBorder(
     borderRadius: _controlRadius,
   );
