@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart' show CupertinoLocalizations;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:viadrouniki/app.dart';
 import 'package:viadrouniki/core/l10n/gen/app_localizations.dart';
+import 'package:viadrouniki/core/settings/language_cubit.dart';
+import 'package:viadrouniki/core/settings/theme_cubit.dart';
 
 void main() {
   group('ViadrounikiApp', () {
@@ -12,7 +15,15 @@ void main() {
       tester.platformDispatcher.localesTestValue = const [Locale('en', 'US')];
       addTearDown(tester.platformDispatcher.clearLocalesTestValue);
 
-      await tester.pumpWidget(const ViadrounikiApp());
+      SharedPreferences.setMockInitialValues({});
+      final preferences = await SharedPreferences.getInstance();
+
+      await tester.pumpWidget(
+        ViadrounikiApp(
+          languageCubit: LanguageCubit(preferences),
+          themeCubit: ThemeCubit(preferences),
+        ),
+      );
 
       final context = tester.element(find.byType(Scaffold));
       expect(Localizations.localeOf(context), const Locale('ru'));

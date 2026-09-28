@@ -1,23 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viadrouniki/core/l10n/gen/app_localizations.dart';
+import 'package:viadrouniki/core/settings/app_language.dart';
+import 'package:viadrouniki/core/settings/app_theme_mode.dart';
+import 'package:viadrouniki/core/settings/language_cubit.dart';
+import 'package:viadrouniki/core/settings/theme_cubit.dart';
+import 'package:viadrouniki/core/theme/app_theme.dart';
 
 class ViadrounikiApp extends StatelessWidget {
-  const new({super.key});
+  const new({required this.languageCubit, required this.themeCubit, super.key});
+
+  final LanguageCubit languageCubit;
+  final ThemeCubit themeCubit;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
-      // The language is app-controlled, never the device's: the API only
-      // serves ru/be, and an unsupported device locale would otherwise fall
-      // back to whichever of the two sorts first. A persisted LanguageCubit
-      // replaces this constant in M1.
-      locale: const Locale('ru'),
-      supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      home: const _PlaceholderScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(value: languageCubit),
+        BlocProvider.value(value: themeCubit),
+      ],
+      child: Builder(
+        builder: (context) {
+          final language = context.watch<LanguageCubit>().state;
+          final themeMode = context.watch<ThemeCubit>().state;
+          return MaterialApp(
+            onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
+            locale: language.toLocale(),
+            theme: AppTheme.light,
+            darkTheme: AppTheme.dark,
+            themeMode: themeMode.toThemeMode(),
+            supportedLocales: AppLocalizations.supportedLocales,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            home: const _PlaceholderScreen(),
+          );
+        },
+      ),
     );
   }
+}
+
+extension on AppLanguage {
+  Locale toLocale() => switch (this) {
+    AppLanguage.ru => const Locale('ru'),
+    AppLanguage.be => const Locale('be'),
+  };
+}
+
+extension on AppThemeMode {
+  ThemeMode toThemeMode() => switch (this) {
+    AppThemeMode.system => ThemeMode.system,
+    AppThemeMode.light => ThemeMode.light,
+    AppThemeMode.dark => ThemeMode.dark,
+  };
 }
 
 class _PlaceholderScreen extends StatelessWidget {
