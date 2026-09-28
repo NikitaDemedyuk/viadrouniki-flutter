@@ -74,6 +74,7 @@ fvm flutter build apk --debug
   SHAs, and stacked branches rely on the original commits landing unchanged in `develop`.
 - Split a PR by concern into commits that each pass format, analyze and test on their own.
 - Add a dependency in the PR that first uses it — never ahead of time.
+- A PR that changes something this file states updates this file in the same PR, not after it.
 
 ## Platform projects
 
