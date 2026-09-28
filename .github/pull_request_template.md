@@ -21,4 +21,5 @@ Base branch: develop. Leave out optional sections that don't apply, rather than 
 - [ ] `fvm flutter analyze` (0 issues)
 - [ ] `fvm flutter test` (N passed)
 - [ ] Ran on iOS Simulator / Android emulator
+- [ ] `CLAUDE.md` still matches the code (updated in this PR if not)
 <!-- Plus any API assumptions checked with curl against the live API. -->

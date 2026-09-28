@@ -74,6 +74,7 @@ fvm flutter build apk --debug
   SHAs, and stacked branches rely on the original commits landing unchanged in `develop`.
 - Split a PR by concern into commits that each pass format, analyze and test on their own.
 - Add a dependency in the PR that first uses it — never ahead of time.
+- A PR that changes something this file states updates this file in the same PR, not after it.
 
 ## Platform projects
 
@@ -104,8 +105,8 @@ fvm flutter build apk --debug
 - Generated code in `lib/core/l10n/gen/` is gitignored and excluded from analysis; `pub get`
   recreates it.
 - **The language is app-controlled, never the device's.** With a device locale outside ru/be,
-  Flutter would fall back to whichever supported locale sorts first (`be`). The app pins `ru`
-  until the persisted language setting lands, and must keep choosing explicitly after that.
+  Flutter would fall back to whichever supported locale sorts first (`be`), so `MaterialApp.locale`
+  is always set, from `LanguageCubit`'s saved language (default `ru`).
 - Flutter ships Material, Cupertino and Widgets strings for `be` — unlike iOS, which has no
   Belarusian system language — so system UI needs no extra work.
 - The brand name «Вядроўнікі» is Belarusian in every locale, as on the web.
@@ -122,6 +123,9 @@ fvm flutter build apk --debug
 Comments are for people reading the code, not for Claude or other tools: project context lives in
 this file. **Default to none.** Names, types and tests say *what* the code does.
 
+- **A fact that holds across the project goes here, not in the code.** An API quirk or a
+  convention is stated once in this file and not repeated in a comment; a comment carries only a
+  *why* that is true of the line it sits on.
 - **Write one only for a *why* the code can't show:** a hidden backend behaviour, a deliberate
   deviation from a convention, a platform or SDK quirk, or a trap someone would otherwise "fix".
   One or two lines.
@@ -136,12 +140,13 @@ this file. **Default to none.** Names, types and tests say *what* the code does.
 - A comment that no longer matches the code is worse than none: update or delete it in the same
   change.
 
-Example — a *what* that the enum already says, versus the *why* nobody could guess:
+Example — a *what* that the code already says, versus the *why* nobody could guess:
 
 ```dart
-/// The only two locales the API and l10n support.               // ✗ restates the enum
-/// The API serves content only in ru and be; `locale=en`
-/// silently returns Russian, so English would mix languages.   // ✓ hidden backend behaviour
+/// Near-black text for the accent colours.                 // ✗ restates the value
+/// The web app puts white text on these accents, which
+/// fails WCAG AA contrast on every one (1.9:1 on gold).   // ✓ deliberate deviation
+static const onAccent = Color(0xFF0A0A0A);
 ```
 
 ## Architecture (rules for code as it lands)
@@ -156,8 +161,8 @@ Example — a *what* that the enum already says, versus the *why* nobody could g
 - Widgets hold no business logic and make no network calls. Presentation mappings (a colour or icon
   for a model value) live in `presentation/` extensions, not on models.
 - Errors: a sealed `Result`/`AppException`, not exceptions thrown through blocs.
-- Global error handling uses `FlutterError.onError` and `PlatformDispatcher.instance.onError` —
-  **not** `runZonedGuarded`.
+- Global error handling goes through `FlutterError.onError` (left at Flutter's default, which
+  presents the error) and `PlatformDispatcher.instance.onError` — **not** `runZonedGuarded`.
 - No flavors and no `bootstrap()` file: there is one backend.
 
 ## API facts
