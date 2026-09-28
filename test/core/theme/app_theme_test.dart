@@ -78,6 +78,28 @@ void main() {
       });
     }
 
+    for (final theme in [AppTheme.light, AppTheme.dark]) {
+      final scheme = theme.colorScheme;
+      test('${scheme.brightness.name} text is opaque and readable', () {
+        final backgrounds = {
+          'surface': scheme.surface,
+          'background': theme.scaffoldBackgroundColor,
+          'fill': scheme.surfaceContainerHighest,
+        };
+        for (final text in [scheme.onSurface, scheme.onSurfaceVariant]) {
+          expect(text.a, 1);
+          for (final MapEntry(key: name, value: background)
+              in backgrounds.entries) {
+            expect(
+              _contrast(background, text),
+              greaterThanOrEqualTo(4.5),
+              reason: name,
+            );
+          }
+        }
+      });
+    }
+
     test('cards use a 12px radius and buttons a 6px radius', () {
       final theme = AppTheme.light;
 
