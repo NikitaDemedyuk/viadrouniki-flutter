@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:viadrouniki/core/l10n/gen/app_localizations.dart';
 import 'package:viadrouniki/core/settings/app_language.dart';
 import 'package:viadrouniki/core/settings/app_theme_mode.dart';
@@ -8,10 +9,16 @@ import 'package:viadrouniki/core/settings/theme_cubit.dart';
 import 'package:viadrouniki/core/theme/app_theme.dart';
 
 class ViadrounikiApp extends StatelessWidget {
-  const new({required this.languageCubit, required this.themeCubit, super.key});
+  const new({
+    required this.languageCubit,
+    required this.themeCubit,
+    required this.router,
+    super.key,
+  });
 
   final LanguageCubit languageCubit;
   final ThemeCubit themeCubit;
+  final GoRouter router;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,7 @@ class ViadrounikiApp extends StatelessWidget {
         builder: (context) {
           final language = context.watch<LanguageCubit>().state;
           final themeMode = context.watch<ThemeCubit>().state;
-          return MaterialApp(
+          return MaterialApp.router(
             onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
             locale: language.toLocale(),
             theme: AppTheme.light,
@@ -32,7 +39,7 @@ class ViadrounikiApp extends StatelessWidget {
             themeMode: themeMode.toThemeMode(),
             supportedLocales: AppLocalizations.supportedLocales,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
-            home: const _PlaceholderScreen(),
+            routerConfig: router,
           );
         },
       ),
@@ -53,15 +60,4 @@ extension on AppThemeMode {
     AppThemeMode.light => ThemeMode.light,
     AppThemeMode.dark => ThemeMode.dark,
   };
-}
-
-class _PlaceholderScreen extends StatelessWidget {
-  const new();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text(AppLocalizations.of(context).appTitle)),
-    );
-  }
 }

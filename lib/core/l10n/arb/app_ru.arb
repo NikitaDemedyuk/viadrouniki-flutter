@@ -3,5 +3,21 @@
   "appTitle": "Вядроўнікі",
   "@appTitle": {
     "description": "Brand name shown as the app title. Written in Belarusian in every locale, as on viadrouniki.by."
+  },
+  "tabTrips": "Маршруты",
+  "@tabTrips": {
+    "description": "Bottom navigation label of the trips tab."
+  },
+  "tabPoints": "Точки",
+  "@tabPoints": {
+    "description": "Bottom navigation label of the points of interest (attractions) tab."
+  },
+  "tabCars": "Машины",
+  "@tabCars": {
+    "description": "Bottom navigation label of the cars tab."
+  },
+  "tabProfile": "Профиль",
+  "@tabProfile": {
+    "description": "Bottom navigation label of the profile tab."
   }
 }

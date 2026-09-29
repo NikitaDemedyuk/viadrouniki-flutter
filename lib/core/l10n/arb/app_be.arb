@@ -1,4 +1,8 @@
 {
   "@@locale": "be",
-  "appTitle": "Вядроўнікі"
+  "appTitle": "Вядроўнікі",
+  "tabTrips": "Маршруты",
+  "tabPoints": "Кропкі",
+  "tabCars": "Машыны",
+  "tabProfile": "Профіль"
 }
