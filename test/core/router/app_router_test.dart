@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -78,6 +79,43 @@ void main() {
         expect(selectedIndex(tester), tab.index);
       });
     }
+
+    testWidgets('system back on another tab returns to the start tab', (
+      tester,
+    ) async {
+      await pumpApp(tester, initialLocation: AppTab.cars.path);
+
+      final handled = await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+
+      expect(handled, isTrue);
+      expect(router.state.uri.path, AppTab.trips.path);
+      expect(selectedIndex(tester), AppTab.trips.index);
+    });
+
+    testWidgets('system back on the start tab exits the app', (tester) async {
+      await pumpApp(tester);
+      final platformCalls = <String>[];
+      tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+        SystemChannels.platform,
+        (call) async {
+          platformCalls.add(call.method);
+          return null;
+        },
+      );
+      addTearDown(
+        () => tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+          SystemChannels.platform,
+          null,
+        ),
+      );
+
+      await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+
+      expect(platformCalls, contains('SystemNavigator.pop'));
+      expect(router.state.uri.path, AppTab.trips.path);
+    });
 
     testWidgets('a language switch relabels the tabs and keeps the tab', (
       tester,
