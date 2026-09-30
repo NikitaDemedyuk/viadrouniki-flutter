@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/widgets.dart';
 import 'package:viadrouniki/app.dart';
 import 'package:viadrouniki/core/di/injection.dart';
+import 'package:viadrouniki/core/router/app_router.dart';
 import 'package:viadrouniki/core/settings/language_cubit.dart';
 import 'package:viadrouniki/core/settings/theme_cubit.dart';
 
@@ -22,6 +23,7 @@ Future<void> main() async {
     ViadrounikiApp(
       languageCubit: getIt<LanguageCubit>(),
       themeCubit: getIt<ThemeCubit>(),
+      router: createAppRouter(),
     ),
   );
 }

@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:viadrouniki/app.dart';
 import 'package:viadrouniki/core/l10n/gen/app_localizations.dart';
+import 'package:viadrouniki/core/router/app_router.dart';
 import 'package:viadrouniki/core/settings/language_cubit.dart';
 import 'package:viadrouniki/core/settings/theme_cubit.dart';
 
@@ -17,17 +18,20 @@ void main() {
 
       SharedPreferences.setMockInitialValues({});
       final preferences = await SharedPreferences.getInstance();
+      final router = createAppRouter();
+      addTearDown(router.dispose);
 
       await tester.pumpWidget(
         ViadrounikiApp(
           languageCubit: LanguageCubit(preferences),
           themeCubit: ThemeCubit(preferences),
+          router: router,
         ),
       );
 
-      final context = tester.element(find.byType(Scaffold));
+      final context = tester.element(find.byType(NavigationBar));
       expect(Localizations.localeOf(context), const Locale('ru'));
-      expect(find.text('Вядроўнікі'), findsOneWidget);
+      expect(find.text('Маршруты'), findsWidgets);
     });
   });
 
