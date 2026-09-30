@@ -160,7 +160,9 @@ static const onAccent = Color(0xFF0A0A0A);
   dependencies.
 - Navigation: `go_router` with a `StatefulShellRoute.indexedStack`, one branch per `AppTab` in the
   enum's order, so each tab keeps its own stack. Tab paths are the web's (`/trips`, `/attractions`,
-  `/cars`), so a viadrouniki.by link maps onto the same route. The router is created once in
+  `/cars`), so a viadrouniki.by link maps onto the same route. An unknown location redirects to
+  the start tab through `onException`, so go_router's default error page, which is in English, is
+  never shown. The router is created once in
   `main`; a language or theme change must never rebuild it or key the tree, which would reset
   every tab's stack.
 - Widgets hold no business logic and make no network calls. Presentation mappings (a colour or icon

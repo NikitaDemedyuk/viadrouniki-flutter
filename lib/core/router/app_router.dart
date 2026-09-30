@@ -5,6 +5,7 @@ import 'package:viadrouniki/core/router/tab_placeholder_screen.dart';
 
 GoRouter createAppRouter({String? initialLocation}) => GoRouter(
   initialLocation: initialLocation ?? AppTab.values.first.path,
+  onException: (context, state, router) => router.go(AppTab.values.first.path),
   routes: [
     // The web's home page; the app has no home tab.
     GoRoute(path: '/', redirect: (context, state) => AppTab.values.first.path),

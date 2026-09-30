@@ -54,6 +54,25 @@ void main() {
       expect(selectedIndex(tester), AppTab.trips.index);
     });
 
+    testWidgets('an unknown location opens the start tab', (tester) async {
+      await pumpApp(tester, initialLocation: '/nope');
+
+      expect(router.state.uri.path, AppTab.trips.path);
+      expect(selectedIndex(tester), AppTab.trips.index);
+    });
+
+    testWidgets('going to an unknown location opens the start tab', (
+      tester,
+    ) async {
+      await pumpApp(tester, initialLocation: AppTab.cars.path);
+
+      router.go('/trips/no-such-trip');
+      await tester.pumpAndSettle();
+
+      expect(router.state.uri.path, AppTab.trips.path);
+      expect(selectedIndex(tester), AppTab.trips.index);
+    });
+
     testWidgets('each destination opens its tab', (tester) async {
       await pumpApp(tester);
       const labels = {
