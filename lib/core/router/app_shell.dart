@@ -11,11 +11,11 @@ class AppShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final isStartTab = navigationShell.currentIndex == 0;
+    final isStartTab = navigationShell.currentIndex == AppTab.start.index;
     return PopScope(
       canPop: isStartTab,
       onPopInvokedWithResult: (didPop, _) {
-        if (!didPop) navigationShell.goBranch(0);
+        if (!didPop) navigationShell.goBranch(AppTab.start.index);
       },
       child: Scaffold(
         body: navigationShell,

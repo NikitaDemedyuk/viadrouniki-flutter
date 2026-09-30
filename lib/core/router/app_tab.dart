@@ -26,6 +26,8 @@ enum AppTab {
 
   new({required this.path, required this.icon, required this.selectedIcon});
 
+  static const AppTab start = trips;
+
   final String path;
   final IconData icon;
   final IconData selectedIcon;
