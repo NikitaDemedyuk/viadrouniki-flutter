@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:viadrouniki/core/l10n/gen/app_localizations.dart';
 
-/// The bottom navigation tabs, in the order of the shell's branches.
 enum AppTab {
   trips(
     path: '/trips',
