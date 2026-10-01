@@ -182,6 +182,10 @@ Checked against the live API on 2026-09-26 unless marked as carried over from th
 - **Send `Accept: application/json` on every request.** Without it, an unauthenticated call to a
   protected route returns **500 `text/html`** instead of **401 `application/json`** (verified on
   `auth/me`), which makes 401 handling unreachable.
+- **Request paths start with `/`** (`/trips`). `ApiConfig.baseUrl` has no trailing slash and Dio
+  joins the two verbatim, so `trips` would request `…/v1trips`.
+- Errors come as `{message, error_code}` (`message` follows `locale`); a 401 carries only
+  `message`. A 5xx may be `text/html`, so nothing may assume an error body is JSON.
 - Content endpoints take `locale=ru|be`. `locale=en` is accepted but returns the Russian payload
   byte for byte. A language switch must **refetch** content, because the locale is baked into
   responses already held in state.

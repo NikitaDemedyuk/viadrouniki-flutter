@@ -1,0 +1,258 @@
+{
+  "data": [
+    {
+      "id": 85,
+      "title": "Вёдра №67",
+      "subtitle": "",
+      "number": 67,
+      "slug": "vedra-67",
+      "description": "",
+      "external_links": [],
+      "route_length_km": 420,
+      "start_date": "2026-07-05T00:00:00.000000Z",
+      "end_date": "2026-07-05T00:00:00.000000Z",
+      "meeting_point": "",
+      "meeting_point_latitude": null,
+      "meeting_point_longitude": null,
+      "meeting_time": "10:00:00",
+      "application_approved_extra": "точка сбора находится в 33 км от МКАД\n\nЧасть точек находится в лесу и на поле, так же по маршруту предусмотрены купания в водоемах \n\n💰 Сервисный сбор - 15 руб/чел (оплачивается перед стартом каждым взрослым участником, водитель собирает деньги со своего экипажа и сдает Диме Филу)",
+      "applications_deadline": null,
+      "status": "completed",
+      "is_public": true,
+      "access_mode": "groups",
+      "max_participants": null,
+      "current_participants": 19,
+      "participants_count": 19,
+      "attractions_count": 10,
+      "applications_count": 20,
+      "photos_count": 1,
+      "cars_count": 19,
+      "rating": null,
+      "ratings_count": 0,
+      "user": {
+        "id": 13,
+        "first_name": "Дима",
+        "last_name": "Фил",
+        "instagram": "filauto.by",
+        "name": "Дима Фил"
+      },
+      "main_photo": {
+        "id": 7550,
+        "url": "https://api.viadrouniki.by/storage/trips/85/fEPGuBPAjv6yrTXrzF9vb6GsXL9PJPmelzexq7nD_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/85/fEPGuBPAjv6yrTXrzF9vb6GsXL9PJPmelzexq7nD_mobile.jpg",
+        "alt": null
+      },
+      "meta": {
+        "meta": {
+          "title": "Вёдра №67",
+          "description": null,
+          "keywords": null,
+          "robots": "index, follow",
+          "canonical": "https://viadrouniki.by/trips/vedra-67"
+        },
+        "og": {
+          "title": "Вёдра №67",
+          "description": null,
+          "image": null,
+          "type": "article",
+          "url": "https://viadrouniki.by/trips/vedra-67"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Вёдра №67",
+          "description": null,
+          "image": null
+        },
+        "schema": null,
+        "breadcrumbs": null,
+        "hreflang": null
+      },
+      "is_active": true,
+      "can_accept_applications": false,
+      "can_submit_application": true,
+      "created_at": "2026-06-24T16:19:08.000000Z",
+      "updated_at": "2026-07-17T11:23:07.000000Z"
+    },
+    {
+      "id": 82,
+      "title": "Вёдра №65",
+      "subtitle": "Вольны мельник, Костел Святого Георгия, Костел Вознесения Девы Марии",
+      "number": 65,
+      "slug": "vedra-65",
+      "description": "",
+      "external_links": [],
+      "route_length_km": null,
+      "start_date": "2026-05-31T00:00:00.000000Z",
+      "end_date": "2026-05-31T00:00:00.000000Z",
+      "meeting_point": "",
+      "meeting_point_latitude": null,
+      "meeting_point_longitude": null,
+      "meeting_time": "09:00:00",
+      "application_approved_extra": null,
+      "applications_deadline": null,
+      "status": "completed",
+      "is_public": true,
+      "access_mode": "groups",
+      "max_participants": null,
+      "current_participants": 11,
+      "participants_count": 11,
+      "attractions_count": 7,
+      "applications_count": 11,
+      "photos_count": 1,
+      "cars_count": 11,
+      "rating": null,
+      "ratings_count": 0,
+      "user": {
+        "id": 13,
+        "first_name": "Дима",
+        "last_name": "Фил",
+        "instagram": "filauto.by",
+        "name": "Дима Фил"
+      },
+      "main_photo": {
+        "id": 7388,
+        "url": "https://api.viadrouniki.by/storage/trips/82/AvFeqQZl1lTlD5155DWD0AydmU6TfkdxSV4A7FlL_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/82/AvFeqQZl1lTlD5155DWD0AydmU6TfkdxSV4A7FlL_mobile.jpg",
+        "alt": null
+      },
+      "meta": {
+        "meta": {
+          "title": "Вёдра №65",
+          "description": "Маршрут Вядроўнікаў по Беларуси: Белоруснефть МАЗС № 19, Официна усадьбы Вольских в Липнишках, Вольны мельник, Костел Святого Георгия, Католическая часовня святого Иоанна Крестителя, Костел Вознесения Девы Марии, Костел Богоматери Руженцовой",
+          "keywords": null,
+          "robots": "index, follow",
+          "canonical": "https://viadrouniki.by/trips/vedra-65"
+        },
+        "og": {
+          "title": "Вёдра №65",
+          "description": null,
+          "image": null,
+          "type": "article",
+          "url": "https://viadrouniki.by/trips/vedra-65"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Вёдра №65",
+          "description": null,
+          "image": null
+        },
+        "schema": null,
+        "breadcrumbs": null,
+        "hreflang": null
+      },
+      "is_active": true,
+      "can_accept_applications": false,
+      "can_submit_application": true,
+      "created_at": "2026-05-26T10:38:23.000000Z",
+      "updated_at": "2026-07-03T16:45:04.000000Z"
+    }
+  ],
+  "links": {
+    "first": "https://api.viadrouniki.by/v1/trips?page=1",
+    "last": "https://api.viadrouniki.by/v1/trips?page=24",
+    "prev": null,
+    "next": "https://api.viadrouniki.by/v1/trips?page=2"
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 24,
+    "links": [
+      {
+        "url": null,
+        "label": "pagination.previous",
+        "page": null,
+        "active": false
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=1",
+        "label": "1",
+        "page": 1,
+        "active": true
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=2",
+        "label": "2",
+        "page": 2,
+        "active": false
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=3",
+        "label": "3",
+        "page": 3,
+        "active": false
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=4",
+        "label": "4",
+        "page": 4,
+        "active": false
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=5",
+        "label": "5",
+        "page": 5,
+        "active": false
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=6",
+        "label": "6",
+        "page": 6,
+        "active": false
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=7",
+        "label": "7",
+        "page": 7,
+        "active": false
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=8",
+        "label": "8",
+        "page": 8,
+        "active": false
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=9",
+        "label": "9",
+        "page": 9,
+        "active": false
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=10",
+        "label": "10",
+        "page": 10,
+        "active": false
+      },
+      {
+        "url": null,
+        "label": "...",
+        "active": false
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=23",
+        "label": "23",
+        "page": 23,
+        "active": false
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=24",
+        "label": "24",
+        "page": 24,
+        "active": false
+      },
+      {
+        "url": "https://api.viadrouniki.by/v1/trips?page=2",
+        "label": "pagination.next",
+        "page": 2,
+        "active": false
+      }
+    ],
+    "path": "https://api.viadrouniki.by/v1/trips",
+    "per_page": 2,
+    "to": 2,
+    "total": 48,
+    "pagination_default_per_page": 15,
+    "pagination_max_per_page": 100
+  }
+}

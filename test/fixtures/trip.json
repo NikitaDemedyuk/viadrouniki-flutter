@@ -1,0 +1,393 @@
+{
+  "data": {
+    "id": 5,
+    "title": "Ведра №1",
+    "subtitle": "Костел вознесения - Старая Белица - Церковь св. Алексея",
+    "number": 1,
+    "slug": "vedra-1",
+    "description": "",
+    "external_links": [],
+    "route_length_km": null,
+    "start_date": "2021-05-23T00:00:00.000000Z",
+    "end_date": null,
+    "meeting_point": "",
+    "meeting_point_latitude": null,
+    "meeting_point_longitude": null,
+    "meeting_time": "09:00:00",
+    "application_approved_extra": null,
+    "applications_deadline": null,
+    "status": "completed",
+    "is_public": true,
+    "access_mode": "groups",
+    "max_participants": null,
+    "current_participants": 3,
+    "participants_count": 3,
+    "attractions_count": 5,
+    "applications_count": null,
+    "photos_count": 19,
+    "cars_count": 3,
+    "rating": null,
+    "ratings_count": 0,
+    "user": {
+      "id": 1,
+      "first_name": "Super",
+      "last_name": "Admin",
+      "instagram": null,
+      "name": "Super Admin"
+    },
+    "main_photo": {
+      "id": 5521,
+      "url": "https://api.viadrouniki.by/storage/trips/5/hfT31pIT0neRdz7wBZPzjRO6z4kpc67F6sqTKAtk_desktop.jpg",
+      "url_mobile": "https://api.viadrouniki.by/storage/trips/5/hfT31pIT0neRdz7wBZPzjRO6z4kpc67F6sqTKAtk_mobile.jpg",
+      "alt": null
+    },
+    "photos": [
+      {
+        "id": 9,
+        "media_id": 5521,
+        "url": "https://api.viadrouniki.by/storage/trips/5/hfT31pIT0neRdz7wBZPzjRO6z4kpc67F6sqTKAtk_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/hfT31pIT0neRdz7wBZPzjRO6z4kpc67F6sqTKAtk_mobile.jpg",
+        "alt": null,
+        "is_main": true,
+        "sort_order": 0,
+        "cars": []
+      },
+      {
+        "id": 16,
+        "media_id": 5527,
+        "url": "https://api.viadrouniki.by/storage/trips/5/yuLJuqOYu5R8fC1nrFy03Kh1sUVXTHY9hpWlMQim_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/yuLJuqOYu5R8fC1nrFy03Kh1sUVXTHY9hpWlMQim_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 1,
+        "cars": []
+      },
+      {
+        "id": 10,
+        "media_id": 5528,
+        "url": "https://api.viadrouniki.by/storage/trips/5/iRxzG3G5TesUkQ3vFuSSeOVk4gg5lCtRZaIJpLfd_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/iRxzG3G5TesUkQ3vFuSSeOVk4gg5lCtRZaIJpLfd_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 2,
+        "cars": []
+      },
+      {
+        "id": 11,
+        "media_id": 5524,
+        "url": "https://api.viadrouniki.by/storage/trips/5/BBE7dL1zLrGOuTQX4FqkoxovhyvQXBNrz0fN4Irc_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/BBE7dL1zLrGOuTQX4FqkoxovhyvQXBNrz0fN4Irc_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 4,
+        "cars": []
+      },
+      {
+        "id": 12,
+        "media_id": 5525,
+        "url": "https://api.viadrouniki.by/storage/trips/SyJihEugFXWDmPCMFDFwfb3KcUyJ4m90f4lj4WYr_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/SyJihEugFXWDmPCMFDFwfb3KcUyJ4m90f4lj4WYr_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 5,
+        "cars": []
+      },
+      {
+        "id": 13,
+        "media_id": 5526,
+        "url": "https://api.viadrouniki.by/storage/trips/5/yFtRKkiHL6J73rmQymugg80skurjrdgnVZBzNE7t_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/yFtRKkiHL6J73rmQymugg80skurjrdgnVZBzNE7t_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 6,
+        "cars": []
+      },
+      {
+        "id": 14,
+        "media_id": 5522,
+        "url": "https://api.viadrouniki.by/storage/trips/5/y8SjHMpEeTfCQQLmiz7Nq2feBCMT9K81SmrOSslL_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/y8SjHMpEeTfCQQLmiz7Nq2feBCMT9K81SmrOSslL_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 7,
+        "attraction_id": 4,
+        "attraction": {
+          "id": 4,
+          "slug": "cerkov-svyatogo-alekseya-ruiny",
+          "name": "Церковь Святого Алексея (руины)",
+          "type": {
+            "id": 1,
+            "name": "Церковь",
+            "slug": "church",
+            "icon": "md:MdOutlineChurch",
+            "icon_media": null
+          }
+        },
+        "cars": []
+      },
+      {
+        "id": 15,
+        "media_id": 5523,
+        "url": "https://api.viadrouniki.by/storage/trips/5/V0BgXwFuLWe1akkOiYfYe5s3LTrA4JRLJzrruCqa_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/V0BgXwFuLWe1akkOiYfYe5s3LTrA4JRLJzrruCqa_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 8,
+        "cars": []
+      },
+      {
+        "id": 51,
+        "media_id": 5631,
+        "url": "https://api.viadrouniki.by/storage/trips/5/ekB88KIUjPzjWUQ1QihrWIQouxxivyq5ndBjwUZo_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/ekB88KIUjPzjWUQ1QihrWIQouxxivyq5ndBjwUZo_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 9,
+        "cars": []
+      },
+      {
+        "id": 52,
+        "media_id": 5632,
+        "url": "https://api.viadrouniki.by/storage/trips/5/IomK00VxtOufl2a1lmZWOsn9W8mnIaoPsTBOEwVY_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/IomK00VxtOufl2a1lmZWOsn9W8mnIaoPsTBOEwVY_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 10,
+        "cars": []
+      },
+      {
+        "id": 53,
+        "media_id": 5633,
+        "url": "https://api.viadrouniki.by/storage/trips/5/vjy6c9UsCaxwOonCDL4b5nO1nKRZRdtnlY8Z0ovQ_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/vjy6c9UsCaxwOonCDL4b5nO1nKRZRdtnlY8Z0ovQ_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 11,
+        "cars": []
+      },
+      {
+        "id": 54,
+        "media_id": 5634,
+        "url": "https://api.viadrouniki.by/storage/trips/5/SAUYDWvdUtYphCOwX5FFoE1eDpp8Lq1J4BYdb6rU_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/SAUYDWvdUtYphCOwX5FFoE1eDpp8Lq1J4BYdb6rU_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 12,
+        "cars": []
+      },
+      {
+        "id": 55,
+        "media_id": 5635,
+        "url": "https://api.viadrouniki.by/storage/trips/5/zd2dr2q8GuQNdJVdfkbH0TbLXLLTKP2EXMUa9Hdc_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/zd2dr2q8GuQNdJVdfkbH0TbLXLLTKP2EXMUa9Hdc_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 13,
+        "cars": []
+      },
+      {
+        "id": 56,
+        "media_id": 5636,
+        "url": "https://api.viadrouniki.by/storage/trips/5/6fVvn6Gq4PYUJuDN4jPGi9pai2weQvN8R1C38fRu_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/6fVvn6Gq4PYUJuDN4jPGi9pai2weQvN8R1C38fRu_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 14,
+        "cars": []
+      },
+      {
+        "id": 57,
+        "media_id": 5637,
+        "url": "https://api.viadrouniki.by/storage/trips/5/4GMPsXOmJ7MX9fiVUFUEhnAci8puQefpBNScHwmt_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/4GMPsXOmJ7MX9fiVUFUEhnAci8puQefpBNScHwmt_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 15,
+        "cars": []
+      },
+      {
+        "id": 58,
+        "media_id": 5638,
+        "url": "https://api.viadrouniki.by/storage/trips/5/bk6TgO4YHJ4vaRySXisu2UKOFB2aoGTCg7RExwWp_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/bk6TgO4YHJ4vaRySXisu2UKOFB2aoGTCg7RExwWp_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 16,
+        "cars": []
+      },
+      {
+        "id": 59,
+        "media_id": 5639,
+        "url": "https://api.viadrouniki.by/storage/trips/5/fttlKIeqs8J45iyPYgCb7uiePQM5BvPS8EJanR9W_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/fttlKIeqs8J45iyPYgCb7uiePQM5BvPS8EJanR9W_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 17,
+        "cars": []
+      },
+      {
+        "id": 60,
+        "media_id": 5640,
+        "url": "https://api.viadrouniki.by/storage/trips/5/PIEQAYZfqeFNdZVSSnhb1x0UZvxMevM0BUsCi2MQ_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/PIEQAYZfqeFNdZVSSnhb1x0UZvxMevM0BUsCi2MQ_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 18,
+        "cars": []
+      },
+      {
+        "id": 61,
+        "media_id": 5641,
+        "url": "https://api.viadrouniki.by/storage/trips/5/590Iw11sAmLdVRlO0nuJqwSPQQXhQNKIKkdPwscJ_desktop.jpg",
+        "url_mobile": "https://api.viadrouniki.by/storage/trips/5/590Iw11sAmLdVRlO0nuJqwSPQQXhQNKIKkdPwscJ_mobile.jpg",
+        "alt": null,
+        "is_main": false,
+        "sort_order": 19,
+        "cars": []
+      }
+    ],
+    "attractions": [
+      {
+        "trip_attraction_id": 529,
+        "id": 3486,
+        "name": "АЗС Белоруснефть № 7",
+        "slug": "azs-belorusneft-7",
+        "address": "",
+        "description": "",
+        "external_links": [],
+        "latitude": 53.938469,
+        "longitude": 27.672026,
+        "visited_at": null,
+        "visited": false,
+        "sort_order": 0,
+        "trips_count": 1,
+        "type": {
+          "id": 10,
+          "name": "АЗС",
+          "slug": "azs",
+          "icon": "bi:BiGasPump",
+          "icon_media": null
+        }
+      },
+      {
+        "trip_attraction_id": 6,
+        "id": 1,
+        "name": "Костел Вознесения Девы Марии",
+        "slug": "kostel-vozneseniya-devy-marii",
+        "address": "ДерковщинаДеревня, Деревня, Глубокский район, Витебская область",
+        "description": "",
+        "external_links": [],
+        "latitude": 54.3620456,
+        "longitude": 28.2206257,
+        "visited_at": null,
+        "visited": false,
+        "sort_order": 1,
+        "trips_count": 2,
+        "type": {
+          "id": 2,
+          "name": "Костел",
+          "slug": "cathedral",
+          "icon": "pi:PiChurchBold",
+          "icon_media": null
+        }
+      },
+      {
+        "trip_attraction_id": 7,
+        "id": 2,
+        "name": "Белая Церковь",
+        "slug": "belaya-cerkov",
+        "address": "Красная, Слобода, Жлобинский район, Гомельская область",
+        "description": "",
+        "external_links": [],
+        "latitude": 54.6439883,
+        "longitude": 29.3016488,
+        "visited_at": null,
+        "visited": false,
+        "sort_order": 2,
+        "trips_count": 3,
+        "type": {
+          "id": 1,
+          "name": "Церковь",
+          "slug": "church",
+          "icon": "md:MdOutlineChurch",
+          "icon_media": null
+        }
+      },
+      {
+        "trip_attraction_id": 8,
+        "id": 3,
+        "name": "Усадьба Святских \"Старая Белица\"",
+        "slug": "usadba-svyatskih-staraya-belica",
+        "address": "Дорогово, Кореличский район, Гродненская область",
+        "description": "",
+        "external_links": [],
+        "latitude": 54.6861918,
+        "longitude": 29.6165002,
+        "visited_at": null,
+        "visited": false,
+        "sort_order": 3,
+        "trips_count": 2,
+        "type": {
+          "id": 4,
+          "name": "Замок",
+          "slug": "castle",
+          "icon": "md:MdOutlineCastle",
+          "icon_media": null
+        }
+      },
+      {
+        "trip_attraction_id": 9,
+        "id": 4,
+        "name": "Церковь Святого Алексея (руины)",
+        "slug": "cerkov-svyatogo-alekseya-ruiny",
+        "address": "",
+        "description": "",
+        "external_links": [],
+        "latitude": 54.5952897,
+        "longitude": 30.0564641,
+        "visited_at": null,
+        "visited": false,
+        "sort_order": 4,
+        "trips_count": 2,
+        "type": {
+          "id": 1,
+          "name": "Церковь",
+          "slug": "church",
+          "icon": "md:MdOutlineChurch",
+          "icon_media": null
+        }
+      }
+    ],
+    "user_groups": [],
+    "meta": {
+      "meta": {
+        "title": "Вядроўнікі №1: 23 мая 2021 года",
+        "description": "Маршрут Вядроўнікаў по Беларуси: Костел Вознесения Девы Марии, Белая Церковь, Усадьба Святских \"Старая Белица\", Церковь Святого Алексея (руины)",
+        "keywords": null,
+        "robots": "index, follow",
+        "canonical": "https://viadrouniki.by/trips/vedra-1"
+      },
+      "og": {
+        "title": "Вядроўнікі №1: 23 мая 2021 года",
+        "description": null,
+        "image": "https://api.viadrouniki.by/storage/trips/yFtRKkiHL6J73rmQymugg80skurjrdgnVZBzNE7t_desktop.jpg",
+        "type": "article",
+        "url": "https://viadrouniki.by/trips/vedra-1"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Вядроўнікі №1: 23 мая 2021 года",
+        "description": null,
+        "image": null
+      },
+      "schema": null,
+      "breadcrumbs": null,
+      "hreflang": null
+    },
+    "is_active": true,
+    "can_accept_applications": false,
+    "can_submit_application": true,
+    "created_at": "2026-02-06T17:17:43.000000Z",
+    "updated_at": "2026-05-25T06:08:57.000000Z"
+  }
+}
