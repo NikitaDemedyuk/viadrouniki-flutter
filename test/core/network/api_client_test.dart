@@ -129,6 +129,22 @@ void main() {
       );
     });
 
+    test('keeps the status of an error body that is not valid JSON', () async {
+      final adapter = FakeHttpAdapter.json(
+        '<html>Bad Gateway</html>',
+        statusCode: 502,
+      );
+
+      final result = await clientWith(adapter).get('/trips', decode: id);
+
+      expect(
+        failureOf(result),
+        isA<ServerException>()
+            .having((e) => e.statusCode, 'statusCode', 502)
+            .having((e) => e.message, 'message', isNull),
+      );
+    });
+
     test('ignores an error body whose fields are not strings', () async {
       final adapter = FakeHttpAdapter.json(
         '{"message":{"a":1},"error_code":5}',

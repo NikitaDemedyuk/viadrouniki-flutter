@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:viadrouniki/core/error/app_exception.dart';
 import 'package:viadrouniki/core/error/result.dart';
@@ -33,9 +35,11 @@ class ApiClient {
     Map<String, Object?>? query,
     CancelToken? cancelToken,
   }) async {
-    final Response<Object?> response;
+    final Response<String> response;
     try {
-      response = await _dio.get<Object?>(
+      // Fetched as text: Dio parses JSON before it checks the status, and a
+      // parse failure there drops the response along with its status.
+      response = await _dio.get<String>(
         path,
         queryParameters: query,
         cancelToken: cancelToken,
@@ -44,7 +48,7 @@ class ApiClient {
       return Failure(_mapError(error));
     }
     try {
-      return Success(decode(response.data));
+      return Success(decode(jsonDecode(response.data ?? '')));
     } on Object catch (error) {
       return Failure(DecodingException(error));
     }
@@ -59,16 +63,13 @@ class ApiClient {
     DioExceptionType.cancel => const RequestCancelledException(),
     DioExceptionType.badCertificate => const NetworkException(),
     DioExceptionType.badResponse => _mapBadResponse(error.response!),
-    DioExceptionType.unknown => switch (error.error) {
-      final FormatException format => DecodingException(format),
-      _ => const NetworkException(),
-    },
+    DioExceptionType.unknown => const NetworkException(),
   };
 
   AppException _mapBadResponse(Response<Object?> response) {
     final statusCode = response.statusCode!;
     if (statusCode == 401) return const UnauthorizedException();
-    final body = response.data;
+    final body = _tryJson(response.data);
     return ServerException(
       statusCode: statusCode,
       message: body is Map<String, Object?> && body['message'] is String
@@ -78,5 +79,14 @@ class ApiClient {
           ? body['error_code']! as String
           : null,
     );
+  }
+
+  Object? _tryJson(Object? data) {
+    if (data is! String) return null;
+    try {
+      return jsonDecode(data);
+    } on FormatException {
+      return null;
+    }
   }
 }
