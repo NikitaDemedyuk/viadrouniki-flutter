@@ -13,7 +13,6 @@ class ApiClient {
           baseUrl: ApiConfig.baseUrl,
           connectTimeout: ApiConfig.connectTimeout,
           receiveTimeout: ApiConfig.receiveTimeout,
-          // Without it, a protected route answers 500 text/html, not 401 json.
           headers: {Headers.acceptHeader: Headers.jsonContentType},
         ),
       ) {
