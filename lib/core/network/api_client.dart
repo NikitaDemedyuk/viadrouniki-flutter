@@ -91,12 +91,14 @@ class ApiClient {
     final body = _tryJson(response.data);
     return ServerException(
       statusCode: statusCode,
-      message: body is Map<String, Object?> && body['message'] is String
-          ? body['message']! as String
-          : null,
-      code: body is Map<String, Object?> && body['error_code'] is String
-          ? body['error_code']! as String
-          : null,
+      message: switch (body) {
+        {'message': final String message} => message,
+        _ => null,
+      },
+      code: switch (body) {
+        {'error_code': final String code} => code,
+        _ => null,
+      },
     );
   }
 
