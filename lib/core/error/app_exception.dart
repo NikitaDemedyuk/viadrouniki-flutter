@@ -2,7 +2,7 @@ sealed class AppException implements Exception {
   const new();
 }
 
-class NetworkException extends AppException {
+final class NetworkException extends AppException {
   const new([this.cause]);
 
   final Object? cause;
@@ -11,15 +11,15 @@ class NetworkException extends AppException {
   String toString() => 'NetworkException($cause)';
 }
 
-class RequestCancelledException extends AppException {
+final class RequestCancelledException extends AppException {
   const new();
 }
 
-class UnauthorizedException extends AppException {
+final class UnauthorizedException extends AppException {
   const new();
 }
 
-class ServerException extends AppException {
+final class ServerException extends AppException {
   const new({required this.statusCode, this.message, this.code});
 
   final int statusCode;
@@ -30,7 +30,7 @@ class ServerException extends AppException {
   String toString() => 'ServerException($statusCode, $code: $message)';
 }
 
-class DecodingException extends AppException {
+final class DecodingException extends AppException {
   const new(this.cause, this.stackTrace);
 
   final Object cause;
@@ -40,7 +40,7 @@ class DecodingException extends AppException {
   String toString() => 'DecodingException($cause)';
 }
 
-class UnexpectedException extends AppException {
+final class UnexpectedException extends AppException {
   const new(this.cause, this.stackTrace);
 
   final Object cause;
