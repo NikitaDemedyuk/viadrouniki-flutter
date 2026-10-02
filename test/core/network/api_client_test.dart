@@ -9,7 +9,8 @@ import 'package:viadrouniki/core/network/api_client.dart';
 import '../../support/fake_http_adapter.dart';
 
 void main() {
-  const notFound = '{"message":"Ресурс не найден","error_code":"not_found"}';
+  final notFound = File('test/fixtures/error_not_found.json')
+      .readAsStringSync();
 
   String id(Object? json) => (json! as Map<String, dynamic>)['id'].toString();
 
