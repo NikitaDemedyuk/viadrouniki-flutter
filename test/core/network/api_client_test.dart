@@ -28,16 +28,18 @@ void main() {
       expect(adapter.lastRequest.headers['Accept'], 'application/json');
     });
 
-    test('resolves the path against the API base URL', () async {
-      final adapter = FakeHttpAdapter.json('{"id":1}');
+    for (final path in ['/trips', 'trips']) {
+      test('resolves "$path" against the API base URL', () async {
+        final adapter = FakeHttpAdapter.json('{"id":1}');
 
-      await clientWith(adapter).get('/trips', decode: id);
+        await clientWith(adapter).get(path, decode: id);
 
-      expect(
-        adapter.lastRequest.uri.toString(),
-        startsWith('https://api.viadrouniki.by/v1/trips'),
-      );
-    });
+        expect(
+          adapter.lastRequest.uri.toString(),
+          startsWith('https://api.viadrouniki.by/v1/trips?'),
+        );
+      });
+    }
 
     test('adds the locale and keeps the caller query', () async {
       final adapter = FakeHttpAdapter.json('{"id":1}');
