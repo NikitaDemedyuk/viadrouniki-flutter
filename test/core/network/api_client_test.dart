@@ -84,6 +84,35 @@ void main() {
       expect((result as Success<String>).value, '7');
     });
 
+    test('maps a non-JSON 2xx to NetworkException without decoding', () async {
+      final adapter = FakeHttpAdapter(
+        (_) =>
+            jsonBody('<html>Sign in to Wi-Fi</html>', contentType: 'text/html'),
+      );
+      var decoded = false;
+
+      final result = await clientWith(adapter).get(
+        '/trips',
+        decode: (json) {
+          decoded = true;
+          return id(json);
+        },
+      );
+
+      expect(failureOf(result), isA<NetworkException>());
+      expect(decoded, isFalse);
+    });
+
+    test('maps a 2xx without a content type to NetworkException', () async {
+      final adapter = FakeHttpAdapter(
+        (_) => ResponseBody.fromString('{"id":1}', 200),
+      );
+
+      final result = await clientWith(adapter).get('/trips', decode: id);
+
+      expect(failureOf(result), isA<NetworkException>());
+    });
+
     test('maps 401 to UnauthorizedException', () async {
       final adapter = FakeHttpAdapter.json(
         '{"message":"Unauthenticated."}',

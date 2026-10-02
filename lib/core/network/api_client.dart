@@ -48,6 +48,14 @@ class ApiClient {
     } on DioException catch (error) {
       return Failure(_mapError(error));
     }
+    final contentType = response.headers.value(Headers.contentTypeHeader);
+    if (!Transformer.isJsonMimeType(contentType)) {
+      // A non-JSON 2xx comes from something between us and the API, such as a
+      // captive portal, not from the API itself.
+      return Failure(
+        NetworkException(FormatException('Not a JSON response', contentType)),
+      );
+    }
     try {
       return Success(decode(jsonDecode(response.data ?? '')));
     } on Object catch (error, stackTrace) {
