@@ -3,7 +3,12 @@ sealed class AppException implements Exception {
 }
 
 class NetworkException extends AppException {
-  const new();
+  const new([this.cause]);
+
+  final Object? cause;
+
+  @override
+  String toString() => 'NetworkException($cause)';
 }
 
 class RequestCancelledException extends AppException {
@@ -26,10 +31,21 @@ class ServerException extends AppException {
 }
 
 class DecodingException extends AppException {
-  const new(this.cause);
+  const new(this.cause, this.stackTrace);
 
   final Object cause;
+  final StackTrace stackTrace;
 
   @override
   String toString() => 'DecodingException($cause)';
+}
+
+class UnexpectedException extends AppException {
+  const new(this.cause, this.stackTrace);
+
+  final Object cause;
+  final StackTrace stackTrace;
+
+  @override
+  String toString() => 'UnexpectedException($cause)';
 }

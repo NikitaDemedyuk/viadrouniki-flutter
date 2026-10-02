@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:viadrouniki/core/error/app_exception.dart';
@@ -49,8 +50,8 @@ class ApiClient {
     }
     try {
       return Success(decode(jsonDecode(response.data ?? '')));
-    } on Object catch (error) {
-      return Failure(DecodingException(error));
+    } on Object catch (error, stackTrace) {
+      return Failure(DecodingException(error, stackTrace));
     }
   }
 
@@ -59,11 +60,22 @@ class ApiClient {
     DioExceptionType.sendTimeout ||
     DioExceptionType.receiveTimeout ||
     DioExceptionType.transformTimeout ||
-    DioExceptionType.connectionError => const NetworkException(),
+    DioExceptionType.connectionError ||
+    DioExceptionType.badCertificate => NetworkException(error.error),
     DioExceptionType.cancel => const RequestCancelledException(),
-    DioExceptionType.badCertificate => const NetworkException(),
     DioExceptionType.badResponse => _mapBadResponse(error.response!),
-    DioExceptionType.unknown => const NetworkException(),
+    // Dio reports failed connects as connectionError, so what lands here is
+    // either an I/O failure mid-response or a bug in the request pipeline.
+    DioExceptionType.unknown => switch (error.error) {
+      final IOException io => NetworkException(io),
+      final cause? => UnexpectedException(
+        cause,
+        // Dio wraps an adapter's error with the request's call site, not the
+        // throw site; an Error records its own.
+        (cause is Error ? cause.stackTrace : null) ?? error.stackTrace,
+      ),
+      null => UnexpectedException(error, error.stackTrace),
+    },
   };
 
   AppException _mapBadResponse(Response<Object?> response) {

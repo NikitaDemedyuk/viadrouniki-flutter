@@ -161,12 +161,17 @@ void main() {
       );
     });
 
-    test('maps a failed decode to DecodingException', () async {
+    test('maps a failed decode to DecodingException with its cause', () async {
       final adapter = FakeHttpAdapter.json('[1, 2]');
 
       final result = await clientWith(adapter).get('/trips', decode: id);
 
-      expect(failureOf(result), isA<DecodingException>());
+      expect(
+        failureOf(result),
+        isA<DecodingException>()
+            .having((e) => e.cause, 'cause', isA<TypeError>())
+            .having((e) => e.stackTrace.toString(), 'stackTrace', isNotEmpty),
+      );
     });
 
     test('maps a malformed JSON body to DecodingException', () async {
@@ -193,17 +198,70 @@ void main() {
       });
     }
 
-    test('maps a socket failure to NetworkException', () async {
+    test('maps a socket failure to NetworkException with its cause', () async {
+      const offline = SocketException('offline');
       final adapter = FakeHttpAdapter(
-        (options) => throw DioException(
-          requestOptions: options,
-          error: const SocketException('offline'),
-        ),
+        (options) =>
+            throw DioException(requestOptions: options, error: offline),
       );
 
       final result = await clientWith(adapter).get('/trips', decode: id);
 
-      expect(failureOf(result), isA<NetworkException>());
+      expect(
+        failureOf(result),
+        isA<NetworkException>().having((e) => e.cause, 'cause', offline),
+      );
+    });
+
+    test('maps a failed TLS handshake to NetworkException', () async {
+      final adapter = FakeHttpAdapter(
+        (_) => throw const HandshakeException('bad handshake'),
+      );
+
+      final result = await clientWith(adapter).get('/trips', decode: id);
+
+      expect(
+        failureOf(result),
+        isA<NetworkException>().having(
+          (e) => e.cause,
+          'cause',
+          isA<HandshakeException>(),
+        ),
+      );
+    });
+
+    test('maps an adapter bug to UnexpectedException', () async {
+      final bug = StateError('adapter bug');
+      final adapter = FakeHttpAdapter((_) => throw bug);
+
+      final result = await clientWith(adapter).get('/trips', decode: id);
+
+      expect(
+        failureOf(result),
+        isA<UnexpectedException>()
+            .having((e) => e.cause, 'cause', bug)
+            .having((e) => e.stackTrace, 'stackTrace', same(bug.stackTrace)),
+      );
+    });
+
+    test('maps an interceptor bug to UnexpectedException', () async {
+      final adapter = FakeHttpAdapter.json('{"id":1}');
+      final client = clientWith(
+        adapter,
+        locale: () => throw StateError('no locale'),
+      );
+
+      final result = await client.get('/trips', decode: id);
+
+      expect(
+        failureOf(result),
+        isA<UnexpectedException>().having(
+          (e) => e.cause,
+          'cause',
+          isA<StateError>(),
+        ),
+      );
+      expect(adapter.requests, isEmpty);
     });
 
     test('maps a cancelled request to RequestCancelledException', () async {
