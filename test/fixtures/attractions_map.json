@@ -1,0 +1,29 @@
+[
+  {
+    "id": 3654,
+    "name": "АЗС А100",
+    "slug": "koordinaty-53952496-27987678",
+    "type": 10,
+    "latitude": 53.9524962,
+    "longitude": 27.98767773,
+    "is_active": true
+  },
+  {
+    "id": 3666,
+    "name": "Дом семьи Яцко",
+    "slug": "koordinaty-53434201-28976685",
+    "type": 9,
+    "latitude": 53.43420101,
+    "longitude": 28.97668508,
+    "is_active": true
+  },
+  {
+    "id": 3641,
+    "name": "Старт",
+    "slug": "koordinaty-53913909-27254331",
+    "type": 10,
+    "latitude": 53.91390854,
+    "longitude": 27.25433105,
+    "is_active": true
+  }
+]

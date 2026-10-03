@@ -1,0 +1,43 @@
+{
+  "data": [
+    {
+      "id": 38,
+      "brand": "Chevrolet",
+      "model": "Caprice",
+      "year": 1970,
+      "user": {
+        "id": 1,
+        "name": "Super Admin"
+      },
+      "main_photo": null
+    },
+    {
+      "id": 63,
+      "brand": "Volkswagen",
+      "model": "Jetta",
+      "year": 1985,
+      "user": {
+        "id": 1,
+        "name": "Super Admin"
+      },
+      "main_photo": {
+        "id": 7110,
+        "url": "https://api.viadrouniki.by/storage/cars/0MRTFtfZCoufGEsHpWonLOYjNF8r35Cep6GYgZ38_desktop.jpg"
+      }
+    },
+    {
+      "id": 68,
+      "brand": "Mercedes",
+      "model": "560 SEC",
+      "year": 1986,
+      "user": {
+        "id": 1,
+        "name": "Super Admin"
+      },
+      "main_photo": {
+        "id": 7108,
+        "url": "https://api.viadrouniki.by/storage/cars/vY3tb6kjfNCZTu0uoCT3ywK5aHhTXYntv2yGwoWj_desktop.jpg"
+      }
+    }
+  ]
+}
