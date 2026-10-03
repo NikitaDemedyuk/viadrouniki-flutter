@@ -187,8 +187,9 @@ Checked against the live API on 2026-09-26 unless marked as carried over from th
   `…/v1trips`.
 - Errors come as `{message, error_code}` (`message` follows `locale`); a 401 carries only
   `message`. A 5xx may be `text/html`, so nothing may assume an error body is JSON.
-- Every 2xx response is `application/json` (checked 2026-10-02), so `ApiClient` reports a non-JSON
-  2xx as a `NetworkException`.
+- Every 2xx response is `application/json` (checked 2026-10-02), so a non-JSON 2xx comes from
+  something in between, such as a captive portal, and `ApiClient` reports it as a
+  `NetworkException`.
 - Content endpoints take `locale=ru|be`. `locale=en` is accepted but returns the Russian payload
   byte for byte. A language switch must **refetch** content, because the locale is baked into
   responses already held in state.

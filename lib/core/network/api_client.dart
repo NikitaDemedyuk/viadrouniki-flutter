@@ -37,8 +37,8 @@ class ApiClient {
   }) async {
     final Response<String> response;
     try {
-      // Fetched as text: Dio parses JSON before it checks the status, and a
-      // parse failure there drops the response along with its status.
+      // Dio parses JSON before it checks the status, and a parse failure
+      // there drops the response along with its status.
       response = await _dio.get<String>(
         path,
         queryParameters: query,
@@ -49,8 +49,6 @@ class ApiClient {
     }
     final contentType = response.headers.value(Headers.contentTypeHeader);
     if (!Transformer.isJsonMimeType(contentType)) {
-      // A non-JSON 2xx comes from something between us and the API, such as a
-      // captive portal, not from the API itself.
       return Failure(
         NetworkException(FormatException('Not a JSON response', contentType)),
       );
