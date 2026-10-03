@@ -153,9 +153,9 @@ static const onAccent = Color(0xFF0A0A0A);
 
 - Feature-first folders under `lib/features/<feature>/` with `data/`, `domain/`, `presentation/`;
   shared code under `lib/core/`. Dependencies point downward only.
-- State: `flutter_bloc`. Blocs depend on **abstract repositories** received through the constructor;
-  they never import `material.dart`. No use-case classes — for a read-only API they would only pass
-  calls through.
+- State: `flutter_bloc`. Blocs depend on **use cases** received through the constructor; a use case
+  is one operation in `domain/` and depends on **abstract repositories**. Blocs never import
+  `material.dart`.
 - `get_it` is used only at the composition root and in route builders; no class looks up its own
   dependencies.
 - Navigation: `go_router` with a `StatefulShellRoute.indexedStack`, one branch per `AppTab` in the
