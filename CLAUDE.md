@@ -83,6 +83,11 @@ fvm flutter build apk --debug
 - **`.github/actions/setup-flutter` reads the SDK version from `.fvmrc`**, so CI can't drift from
   FVM: an SDK upgrade changes `.fvmrc` only. It also sets up JDK 21, as locally.
 - CI builds Android only. iOS is verified locally with `fvm flutter build ios --simulator --debug`.
+- **Pushing a tag `v<x.y.z>`** cut from `develop` runs **`release.yml`**: tests, then a release APK
+  with `--build-name` from the tag and `--build-number` from the run number, attached to a GitHub
+  **pre-release**. The APK is signed with the debug key, through the template's release
+  `signingConfig`: it installs by sideloading but can't be published to Google Play, hence
+  pre-release. These tags don't touch `main`.
 
 ## Platform projects
 
