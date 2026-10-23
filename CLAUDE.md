@@ -76,6 +76,14 @@ fvm flutter build apk --debug
 - Add a dependency in the PR that first uses it — never ahead of time.
 - A PR that changes something this file states updates this file in the same PR, not after it.
 
+## CI and releases
+
+- GitHub Actions. **`ci.yml`** runs on every PR to `develop` and every push to it: `dart format
+  --set-exit-if-changed .`, `flutter analyze`, `flutter test`, `flutter build apk --debug`.
+- **`.github/actions/setup-flutter` reads the SDK version from `.fvmrc`**, so CI can't drift from
+  FVM: an SDK upgrade changes `.fvmrc` only. It also sets up JDK 21, as locally.
+- CI builds Android only. iOS is verified locally with `fvm flutter build ios --simulator --debug`.
+
 ## Platform projects
 
 - `ios/` and `android/` are the **Flutter 3.47.5 app template, unmodified** apart from the Android

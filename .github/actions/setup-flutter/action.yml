@@ -1,0 +1,24 @@
+name: Set up Flutter
+description: Installs the Flutter SDK pinned in .fvmrc and JDK 21, then fetches pub dependencies.
+
+runs:
+  using: composite
+  steps:
+    - id: sdk
+      shell: bash
+      run: echo "version=$(jq -r .flutter .fvmrc)" >> "$GITHUB_OUTPUT"
+
+    - uses: subosito/flutter-action@v2
+      with:
+        channel: stable
+        flutter-version: ${{ steps.sdk.outputs.version }}
+        cache: true
+
+    - uses: actions/setup-java@v6
+      with:
+        distribution: temurin
+        java-version: '21'
+        cache: gradle
+
+    - shell: bash
+      run: flutter pub get
