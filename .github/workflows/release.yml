@@ -26,6 +26,8 @@ jobs:
 
       - name: Check the tag is on develop
         run: |
+          git rev-parse --verify --quiet origin/develop > /dev/null ||
+            { echo "::error::origin/develop is missing from the checkout"; exit 1; }
           git merge-base --is-ancestor "$GITHUB_SHA" origin/develop ||
             { echo "::error::$GITHUB_REF_NAME is not on develop"; exit 1; }
 
