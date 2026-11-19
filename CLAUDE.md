@@ -78,8 +78,9 @@ fvm flutter build apk --debug
 
 ## CI and releases
 
-- GitHub Actions. **`ci.yml`** runs on every PR to `develop` and every push to it: `dart format
-  --set-exit-if-changed .`, `flutter analyze`, `flutter test`, `flutter build apk --debug`.
+- GitHub Actions. **`ci.yml`** runs on every PR, stacked ones included, and every push to
+  `develop`: `dart format --set-exit-if-changed .`, `flutter analyze`, `flutter test`,
+  `flutter build apk --debug`.
 - **`.github/actions/setup-flutter` reads the SDK version from `.fvmrc`**, so CI can't drift from
   FVM: an SDK upgrade changes `.fvmrc` only. It also sets up JDK 21, as locally.
 - CI builds Android only. iOS is verified locally with `fvm flutter build ios --simulator --debug`.
