@@ -70,8 +70,6 @@ fvm flutter build apk --debug
 - The PR body follows `.github/pull_request_template.md`: Summary, Changes (per commit with its
   SHA when there are several), Screenshots (UI only), Reviewer notes, Verification. Leave out
   optional sections that don't apply rather than writing "N/A".
-- **Merge with "Create a merge commit"** — never squash or rebase. PR descriptions cite commit
-  SHAs, and stacked branches rely on the original commits landing unchanged in `develop`.
 - Split a PR by concern into commits that each pass format, analyze and test on their own.
 - Add a dependency in the PR that first uses it — never ahead of time.
 - A PR that changes something this file states updates this file in the same PR, not after it.
