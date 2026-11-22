@@ -8,7 +8,7 @@ Base branch: develop. Leave out optional sections that don't apply, rather than 
 <!-- What changed and why, in 1–3 bullets. -->
 
 ## Changes
-<!-- Grouped bullets. For multi-commit PRs, one entry per commit with its short SHA. -->
+<!-- Grouped bullets, by concern. -->
 
 ## Screenshots
 <!-- UI changes only: before/after, or light/dark × ru/be in a table. -->

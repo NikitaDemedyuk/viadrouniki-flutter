@@ -67,10 +67,13 @@ fvm flutter build apk --debug
 - PR and commit titles use Conventional Commits: `<type>(<scope>): <summary>`, lowercase,
   imperative, no period, ≤ 72 chars. Branch prefix → type: `feature/` → `feat`, `fix/` → `fix`,
   `docs/` → `docs`, `chore/` → `chore` (or `refactor`/`test`/`build`/`style` when those fit better).
-- The PR body follows `.github/pull_request_template.md`: Summary, Changes (per commit with its
-  SHA when there are several), Screenshots (UI only), Reviewer notes, Verification. Leave out
-  optional sections that don't apply rather than writing "N/A".
-- Split a PR by concern into commits that each pass format, analyze and test on their own.
+- The PR body follows `.github/pull_request_template.md`: Summary, Changes (grouped by concern),
+  Screenshots (UI only), Reviewer notes, Verification. Leave out optional sections that don't
+  apply rather than writing "N/A".
+- **Merge with "Squash and merge"**, the only method the repo allows. The PR title becomes the
+  commit on `develop` and its body stays empty, so the title must describe the whole change.
+- A PR is one concern. Commits inside the branch are free-form: only the PR title lands on
+  `develop`, and each PR must pass format, analyze and test as a whole.
 - Add a dependency in the PR that first uses it — never ahead of time.
 - A PR that changes something this file states updates this file in the same PR, not after it.
 
