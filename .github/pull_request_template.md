@@ -1,7 +1,7 @@
 <!--
 Title: <type>(<scope>): <summary> — Conventional Commits, lowercase, imperative, no period, ≤ 72 chars.
 Branch prefix → type: feature/ → feat, fix/ → fix, chore/ → chore|refactor|test|build|style, docs/ → docs.
-Base branch: develop. Leave out optional sections that don't apply, rather than writing "N/A".
+Base branch: main. Leave out optional sections that don't apply, rather than writing "N/A".
 -->
 
 ## Summary
