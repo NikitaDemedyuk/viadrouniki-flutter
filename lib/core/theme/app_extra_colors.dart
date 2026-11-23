@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:viadrouniki/core/theme/app_colors.dart';
 
+@immutable
 final class AppExtraColors extends ThemeExtension<AppExtraColors> {
   const new({
     required this.brand,
@@ -44,4 +45,14 @@ final class AppExtraColors extends ThemeExtension<AppExtraColors> {
       seasonWinter: Color.lerp(seasonWinter, other.seasonWinter, t)!,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      other is AppExtraColors &&
+      other.brand == brand &&
+      other.seasonSummer == seasonSummer &&
+      other.seasonWinter == seasonWinter;
+
+  @override
+  int get hashCode => Object.hash(brand, seasonSummer, seasonWinter);
 }
