@@ -18,6 +18,8 @@ void main() {
         'surfaceContainerLow': 0xFFF2F5EC,
         'surfaceContainer': 0xFFECEFE5,
         'surfaceContainerHigh': 0xFFE6E9E0,
+        // Seed-derived; the design uses it only as the light skeleton.
+        'surfaceContainerHighest': 0xFFE1E4D9,
         'onSurface': 0xFF191D16,
         'onSurfaceVariant': 0xFF43483F,
         'outline': 0xFF73796E,
@@ -59,6 +61,7 @@ void main() {
           'surfaceContainerLow': scheme.surfaceContainerLow,
           'surfaceContainer': scheme.surfaceContainer,
           'surfaceContainerHigh': scheme.surfaceContainerHigh,
+          'surfaceContainerHighest': scheme.surfaceContainerHighest,
           'onSurface': scheme.onSurface,
           'onSurfaceVariant': scheme.onSurfaceVariant,
           'outline': scheme.outline,
@@ -88,6 +91,10 @@ void main() {
 
       test('$name fill stands out from cards', () {
         expect(scheme.surfaceContainerHigh, isNot(scheme.surfaceContainerLow));
+        expect(
+          scheme.surfaceContainerHighest,
+          isNot(scheme.surfaceContainerHigh),
+        );
       });
 
       test('$name accents meet WCAG AA contrast', () {
@@ -115,6 +122,7 @@ void main() {
           'surface': scheme.surface,
           'surfaceContainerLow': scheme.surfaceContainerLow,
           'surfaceContainerHigh': scheme.surfaceContainerHigh,
+          'surfaceContainerHighest': scheme.surfaceContainerHighest,
         };
         for (final text in [scheme.onSurface, scheme.onSurfaceVariant]) {
           expect(text.a, 1);

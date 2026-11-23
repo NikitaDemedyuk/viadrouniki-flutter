@@ -3,8 +3,7 @@ import 'package:viadrouniki/core/theme/app_colors.dart';
 import 'package:viadrouniki/core/theme/app_extra_colors.dart';
 import 'package:viadrouniki/core/theme/app_radius.dart';
 
-/// Material 3 theme with the mobile design system's Android colours, used on
-/// every platform, and shapes after the web app, viadrouniki.by.
+/// Material 3 theme with shapes after the web app, viadrouniki.by.
 ///
 /// The web app sets "SN Pro" as its font, self-hosted from its own build
 /// with no public license found, so this theme leaves `fontFamily` unset and

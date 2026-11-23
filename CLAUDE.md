@@ -164,10 +164,10 @@ this file. **Default to none.** Names, types and tests say *what* the code does.
 Example — a *what* that the code already says, versus the *why* nobody could guess:
 
 ```dart
-/// Near-black text for the accent colours.                 // ✗ restates the value
-/// The web app puts white text on these accents, which
-/// fails WCAG AA contrast on every one (1.9:1 on gold).   // ✓ deliberate deviation
-static const onAccent = Color(0xFF0A0A0A);
+/// The brand green.                                        // ✗ restates the name
+/// White text on it is 2.3:1, so the light theme's
+/// accent is a darker green from the same scale.          // ✓ deliberate deviation
+static const brand = Color(0xFF52C41A);
 ```
 
 ## Architecture (rules for code as it lands)
