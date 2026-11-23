@@ -60,10 +60,10 @@ fvm flutter build apk --debug
 
 ## Branches and PRs
 
-- **`develop`** is the default branch and the base of every PR. **`main`** is release-only and stays
-  at the init commit until a store release is cut — never commit to it.
-- Every change goes on its own branch cut from `develop`: `feature/<slug>`, `fix/<slug>`,
-  `chore/<slug>` (deps, config, tooling), `docs/<slug>`. Nothing is committed directly to `develop`.
+- GitHub flow: **`main`** is the only long-lived branch, the default branch and the base of every
+  PR. It is kept buildable, and releases are tagged on it.
+- Every change goes on its own branch cut from `main`: `feature/<slug>`, `fix/<slug>`,
+  `chore/<slug>` (deps, config, tooling), `docs/<slug>`. Nothing is committed directly to `main`.
 - PR and commit titles use Conventional Commits: `<type>(<scope>): <summary>`, lowercase,
   imperative, no period, ≤ 72 chars. Branch prefix → type: `feature/` → `feat`, `fix/` → `fix`,
   `docs/` → `docs`, `chore/` → `chore` (or `refactor`/`test`/`build`/`style` when those fit better).
@@ -71,27 +71,30 @@ fvm flutter build apk --debug
   Screenshots (UI only), Reviewer notes, Verification. Leave out optional sections that don't
   apply rather than writing "N/A".
 - **Merge with "Squash and merge"**, the only method the repo allows. The PR title becomes the
-  commit on `develop` and its body stays empty, so the title must describe the whole change.
+  commit on `main` and its body stays empty, so the title must describe the whole change.
+- The **"Main protection" ruleset** on `main` (no bypass) blocks direct pushes, force-pushes and
+  deletion, allows squash merge only, and requires the `Format, analyze, test, build` check.
+  That check is the CI job's `name:` in `ci.yml`: renaming the job leaves every PR waiting on a
+  check that never reports, so update the ruleset in the same PR.
 - A PR is one concern. Commits inside the branch are free-form: only the PR title lands on
-  `develop`, and each PR must pass format, analyze and test as a whole.
+  `main`, and each PR must pass format, analyze and test as a whole.
 - Add a dependency in the PR that first uses it — never ahead of time.
 - A PR that changes something this file states updates this file in the same PR, not after it.
 
 ## CI and releases
 
 - GitHub Actions. **`ci.yml`** runs on every PR, stacked ones included, and every push to
-  `develop`: `dart format --set-exit-if-changed .`, `flutter analyze`, `flutter test`,
+  `main`: `dart format --set-exit-if-changed .`, `flutter analyze`, `flutter test`,
   `flutter build apk --debug`.
 - **`.github/actions/setup-flutter` reads the SDK version from `.fvmrc`**, so CI can't drift from
   FVM: an SDK upgrade changes `.fvmrc` only. It also sets up JDK 21, as locally.
 - CI builds Android only. iOS is verified locally with `fvm flutter build ios --simulator --debug`.
-- **Pushing a tag `v<x.y.z>`** on a commit in `develop` runs **`release.yml`**: the `ci.yml`
+- **Pushing a tag `v<x.y.z>`** on a commit in `main` runs **`release.yml`**: the `ci.yml`
   checks, then a release APK attached to a GitHub **pre-release**. `--build-name` is the tag and
   `--build-number` is `x·10000 + y·100 + z`, so the versionCode grows with the version and is the
-  same on a re-run; minor and patch must stay below 100. A tag that isn't on `develop` fails. The
+  same on a re-run; minor and patch must stay below 100. A tag that isn't on `main` fails. The
   APK is signed with the debug key, through the template's release `signingConfig`: it installs by
-  sideloading but can't be published to Google Play, hence pre-release. These tags don't touch
-  `main`.
+  sideloading but can't be published to Google Play, hence pre-release.
 
 ## Platform projects
 

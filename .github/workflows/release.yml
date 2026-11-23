@@ -24,12 +24,12 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Check the tag is on develop
+      - name: Check the tag is on main
         run: |
-          git rev-parse --verify --quiet origin/develop > /dev/null ||
-            { echo "::error::origin/develop is missing from the checkout"; exit 1; }
-          git merge-base --is-ancestor "$GITHUB_SHA" origin/develop ||
-            { echo "::error::$GITHUB_REF_NAME is not on develop"; exit 1; }
+          git rev-parse --verify --quiet origin/main > /dev/null ||
+            { echo "::error::origin/main is missing from the checkout"; exit 1; }
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main ||
+            { echo "::error::$GITHUB_REF_NAME is not on main"; exit 1; }
 
       - uses: ./.github/actions/setup-flutter
 
