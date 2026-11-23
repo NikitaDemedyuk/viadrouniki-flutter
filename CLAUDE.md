@@ -72,6 +72,10 @@ fvm flutter build apk --debug
   apply rather than writing "N/A".
 - **Merge with "Squash and merge"**, the only method the repo allows. The PR title becomes the
   commit on `main` and its body stays empty, so the title must describe the whole change.
+- The **"Main protection" ruleset** on `main` (no bypass) blocks direct pushes, force-pushes and
+  deletion, allows squash merge only, and requires the `Format, analyze, test, build` check.
+  That check is the CI job's `name:` in `ci.yml`: renaming the job leaves every PR waiting on a
+  check that never reports, so update the ruleset in the same PR.
 - A PR is one concern. Commits inside the branch are free-form: only the PR title lands on
   `main`, and each PR must pass format, analyze and test as a whole.
 - Add a dependency in the PR that first uses it — never ahead of time.
