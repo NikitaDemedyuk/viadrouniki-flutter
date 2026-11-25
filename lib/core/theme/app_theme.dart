@@ -3,7 +3,8 @@ import 'package:viadrouniki/core/theme/app_colors.dart';
 import 'package:viadrouniki/core/theme/app_extra_colors.dart';
 import 'package:viadrouniki/core/theme/app_radius.dart';
 
-/// Material 3 theme with shapes after the web app, viadrouniki.by.
+/// Material 3 theme with the mobile design system's Android colours and
+/// shape scale.
 ///
 /// The web app sets "SN Pro" as its font, self-hosted from its own build
 /// with no public license found, so this theme leaves `fontFamily` unset and
@@ -13,13 +14,7 @@ abstract final class AppTheme {
 
   static final ThemeData dark = _theme(brightness: Brightness.dark);
 
-  static const _controlRadius = BorderRadius.all(
-    Radius.circular(AppRadius.control),
-  );
-
-  static const _controlShape = RoundedRectangleBorder(
-    borderRadius: _controlRadius,
-  );
+  static const _pill = StadiumBorder();
 
   static ThemeData _theme({required Brightness brightness}) {
     final isDark = brightness == Brightness.dark;
@@ -81,27 +76,46 @@ abstract final class AppTheme {
       colorScheme: colorScheme,
       extensions: [if (isDark) AppExtraColors.dark else AppExtraColors.light],
       cardTheme: const CardThemeData(
+        // Lists space their cards themselves; Card's default margin would
+        // add to that gap.
+        margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(AppRadius.card)),
+          borderRadius: BorderRadius.all(Radius.circular(AppRadius.medium)),
+        ),
+      ),
+      chipTheme: const ChipThemeData(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(AppRadius.small)),
+        ),
+      ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(AppRadius.extraLarge),
+          ),
         ),
       ),
       inputDecorationTheme: const InputDecorationTheme(
-        border: OutlineInputBorder(borderRadius: _controlRadius),
+        border: OutlineInputBorder(),
       ),
+      searchBarTheme: const SearchBarThemeData(
+        shape: WidgetStatePropertyAll(_pill),
+      ),
+      navigationBarTheme: const NavigationBarThemeData(indicatorShape: _pill),
       filledButtonTheme: FilledButtonThemeData(
-        style: FilledButton.styleFrom(shape: _controlShape),
+        style: FilledButton.styleFrom(shape: _pill),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(shape: _controlShape),
+        style: ElevatedButton.styleFrom(shape: _pill),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(shape: _controlShape),
+        style: OutlinedButton.styleFrom(shape: _pill),
       ),
       textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(shape: _controlShape),
+        style: TextButton.styleFrom(shape: _pill),
       ),
       segmentedButtonTheme: SegmentedButtonThemeData(
-        style: SegmentedButton.styleFrom(shape: _controlShape),
+        style: SegmentedButton.styleFrom(shape: _pill),
       ),
     );
   }
