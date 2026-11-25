@@ -3,7 +3,8 @@
 Flutter client for the viadrouniki.by road-trip API (`https://api.viadrouniki.by/v1`) — trips,
 points of interest and the cars that drive them, across Belarus. A port of the SwiftUI app
 [viadrouniki-ios](https://github.com/NikitaDemedyuk/viadrouniki-ios), styled after the web version
-(viadrouniki.by) on Material 3.
+(viadrouniki.by) on Material 3. Colours come from the mobile design system's **Android light and
+dark** palettes, used on every platform.
 
 This file holds project **invariants** — facts that hold whether or not anyone remembers why.
 When code and this file disagree, find out which is wrong and fix that one.
@@ -163,10 +164,10 @@ this file. **Default to none.** Names, types and tests say *what* the code does.
 Example — a *what* that the code already says, versus the *why* nobody could guess:
 
 ```dart
-/// Near-black text for the accent colours.                 // ✗ restates the value
-/// The web app puts white text on these accents, which
-/// fails WCAG AA contrast on every one (1.9:1 on gold).   // ✓ deliberate deviation
-static const onAccent = Color(0xFF0A0A0A);
+/// The brand green.                                        // ✗ restates the name
+/// White text on it is 2.3:1, so the light theme's
+/// accent is a darker green from the same scale.          // ✓ deliberate deviation
+static const brand = Color(0xFF52C41A);
 ```
 
 ## Architecture (rules for code as it lands)
@@ -185,6 +186,8 @@ static const onAccent = Color(0xFF0A0A0A);
   never shown. The router is created once in
   `main`; a language or theme change must never rebuild it or key the tree, which would reset
   every tab's stack.
+- Widgets take colours from `Theme.of(context)`, never from `AppColors`: `ColorScheme` roles, and
+  the `AppExtraColors` theme extension for colours outside them (brand, summer and winter season).
 - Widgets hold no business logic and make no network calls. Presentation mappings (a colour or icon
   for a model value) live in `presentation/` extensions, not on models.
 - Errors: a sealed `Result`/`AppException`, not exceptions thrown through blocs.

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:viadrouniki/core/theme/app_colors.dart';
+import 'package:viadrouniki/core/theme/app_extra_colors.dart';
 import 'package:viadrouniki/core/theme/app_radius.dart';
 
-/// Material 3 theme styled after the web app, viadrouniki.by.
+/// Material 3 theme with shapes after the web app, viadrouniki.by.
 ///
 /// The web app sets "SN Pro" as its font, self-hosted from its own build
 /// with no public license found, so this theme leaves `fontFamily` unset and
@@ -22,49 +23,63 @@ abstract final class AppTheme {
 
   static ThemeData _theme({required Brightness brightness}) {
     final isDark = brightness == Brightness.dark;
+    final primary = isDark ? AppColors.primaryDark : AppColors.primaryLight;
+    final primaryContainer = isDark
+        ? AppColors.primaryContainerDark
+        : AppColors.primaryContainerLight;
+    final onPrimaryContainer = isDark
+        ? AppColors.onPrimaryContainerDark
+        : AppColors.onPrimaryContainerLight;
     final colorScheme =
         ColorScheme.fromSeed(
-          seedColor: AppColors.primary,
+          seedColor: AppColors.brand,
           brightness: brightness,
         ).copyWith(
-          primary: AppColors.primary,
-          onPrimary: AppColors.onAccent,
-          surfaceTint: AppColors.primary,
-          secondary: AppColors.gold,
-          onSecondary: AppColors.onAccent,
-          tertiary: AppColors.info,
-          onTertiary: AppColors.onAccent,
-          error: AppColors.error,
-          onError: AppColors.onAccent,
+          primary: primary,
+          onPrimary: isDark
+              ? AppColors.onPrimaryDark
+              : AppColors.onPrimaryLight,
+          primaryContainer: primaryContainer,
+          onPrimaryContainer: onPrimaryContainer,
+          // Material draws the navigation indicator, selected segments and
+          // chips and tonal buttons with secondaryContainer; the design
+          // draws all of them with the primary container.
+          secondaryContainer: primaryContainer,
+          onSecondaryContainer: onPrimaryContainer,
+          surfaceTint: primary,
           surface: isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
+          surfaceContainerLow: isDark
+              ? AppColors.surfaceContainerLowDark
+              : AppColors.surfaceContainerLowLight,
+          surfaceContainer: isDark
+              ? AppColors.surfaceContainerDark
+              : AppColors.surfaceContainerLight,
+          surfaceContainerHigh: isDark
+              ? AppColors.surfaceContainerHighDark
+              : AppColors.surfaceContainerHighLight,
           onSurface: isDark
               ? AppColors.onSurfaceDark
               : AppColors.onSurfaceLight,
           onSurfaceVariant: isDark
               ? AppColors.onSurfaceVariantDark
               : AppColors.onSurfaceVariantLight,
-          surfaceContainerLowest: isDark
-              ? AppColors.backgroundDark
-              : AppColors.surfaceLight,
-          surfaceContainerLow: isDark
-              ? AppColors.surfaceDark
-              : AppColors.surfaceLight,
-          surfaceContainer: isDark
-              ? AppColors.surfaceDark
-              : AppColors.surfaceLight,
-          surfaceContainerHigh: isDark
-              ? AppColors.surfaceElevatedDark
-              : AppColors.surfaceLight,
-          surfaceContainerHighest: isDark
-              ? AppColors.fillDark
-              : AppColors.fillLight,
+          outline: isDark ? AppColors.outlineDark : AppColors.outlineLight,
+          outlineVariant: isDark
+              ? AppColors.outlineVariantDark
+              : AppColors.outlineVariantLight,
+          error: isDark ? AppColors.errorDark : AppColors.errorLight,
+          onError: isDark ? AppColors.onErrorDark : AppColors.onErrorLight,
+          errorContainer: isDark
+              ? AppColors.errorContainerDark
+              : AppColors.errorContainerLight,
+          onErrorContainer: isDark
+              ? AppColors.onErrorContainerDark
+              : AppColors.onErrorContainerLight,
         );
 
     return ThemeData(
       colorScheme: colorScheme,
-      scaffoldBackgroundColor: isDark
-          ? AppColors.backgroundDark
-          : AppColors.backgroundLight,
+      extensions: [if (isDark) AppExtraColors.dark else AppExtraColors.light],
       cardTheme: const CardThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(AppRadius.card)),
