@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:viadrouniki/core/theme/app_extra_colors.dart';
 import 'package:viadrouniki/core/theme/app_radius.dart';
+import 'package:viadrouniki/core/theme/app_spacing.dart';
 import 'package:viadrouniki/core/theme/app_theme.dart';
 
 void main() {
@@ -161,37 +162,94 @@ void main() {
       expect(light.lerp(null, 0.5), light);
     });
 
-    test('cards use a 12px radius', () {
-      final cardShape =
-          AppTheme.light.cardTheme.shape! as RoundedRectangleBorder;
-      expect(cardShape.borderRadius, BorderRadius.circular(AppRadius.card));
+    test('spacing follows the 4-point scale', () {
+      const steps = [
+        AppSpacing.xxxs,
+        AppSpacing.xxs,
+        AppSpacing.xs,
+        AppSpacing.sm,
+        AppSpacing.md,
+        AppSpacing.lg,
+        AppSpacing.xl,
+        AppSpacing.xxl,
+        AppSpacing.xxxl,
+      ];
+      expect(steps, [2, 4, 8, 12, 16, 20, 24, 32, 40]);
     });
 
-    test('buttons and inputs use a 6px radius', () {
-      final theme = AppTheme.light;
-      final controlRadius = BorderRadius.circular(AppRadius.control);
+    test('radii follow the Material 3 shape scale', () {
+      expect(
+        [
+          AppRadius.extraSmall,
+          AppRadius.small,
+          AppRadius.medium,
+          AppRadius.large,
+          AppRadius.extraLarge,
+        ],
+        [4, 8, 12, 16, 28],
+      );
+    });
 
-      final buttonStyles = {
-        'filled': theme.filledButtonTheme.style,
-        'elevated': theme.elevatedButtonTheme.style,
-        'outlined': theme.outlinedButtonTheme.style,
-        'text': theme.textButtonTheme.style,
-        'segmented': theme.segmentedButtonTheme.style,
-      };
-      for (final MapEntry(key: name, value: style) in buttonStyles.entries) {
-        final shape = style?.shape?.resolve({});
-        expect(shape, isA<RoundedRectangleBorder>(), reason: name);
+    for (final theme in [AppTheme.light, AppTheme.dark]) {
+      final name = theme.brightness.name;
+
+      test('$name cards are medium and leave spacing to the list', () {
+        final card = theme.cardTheme;
+        expect(card.margin, EdgeInsets.zero);
         expect(
-          (shape! as RoundedRectangleBorder).borderRadius,
-          controlRadius,
-          reason: name,
+          (card.shape! as RoundedRectangleBorder).borderRadius,
+          BorderRadius.circular(AppRadius.medium),
         );
-      }
+      });
 
-      final inputBorder =
-          theme.inputDecorationTheme.border! as OutlineInputBorder;
-      expect(inputBorder.borderRadius, controlRadius);
-    });
+      test('$name buttons, search bar and nav indicator are pills', () {
+        final shapes = {
+          'filled': theme.filledButtonTheme.style?.shape?.resolve({}),
+          'elevated': theme.elevatedButtonTheme.style?.shape?.resolve({}),
+          'outlined': theme.outlinedButtonTheme.style?.shape?.resolve({}),
+          'text': theme.textButtonTheme.style?.shape?.resolve({}),
+          'segmented': theme.segmentedButtonTheme.style?.shape?.resolve({}),
+          'searchBar': theme.searchBarTheme.shape?.resolve({}),
+          'navIndicator': theme.navigationBarTheme.indicatorShape,
+        };
+        for (final MapEntry(key: component, value: shape) in shapes.entries) {
+          expect(shape, isA<StadiumBorder>(), reason: component);
+        }
+      });
+
+      test('$name chips are small', () {
+        expect(
+          (theme.chipTheme.shape! as RoundedRectangleBorder).borderRadius,
+          BorderRadius.circular(AppRadius.small),
+        );
+      });
+
+      test('$name only unselected chips have an outline border', () {
+        final side = theme.chipTheme.side;
+        expect(
+          WidgetStateProperty.resolveAs(side, {})?.color,
+          theme.colorScheme.outline,
+        );
+        expect(
+          WidgetStateProperty.resolveAs(side, {WidgetState.selected})?.color,
+          Colors.transparent,
+        );
+      });
+
+      test('$name search bar is flat', () {
+        expect(theme.searchBarTheme.elevation?.resolve({}), 0);
+      });
+
+      test('$name bottom sheets round only the top corners', () {
+        expect(
+          (theme.bottomSheetTheme.shape! as RoundedRectangleBorder)
+              .borderRadius,
+          const BorderRadius.vertical(
+            top: Radius.circular(AppRadius.extraLarge),
+          ),
+        );
+      });
+    }
   });
 }
 
