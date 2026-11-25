@@ -189,10 +189,13 @@ static const brand = Color(0xFF52C41A);
   every tab's stack.
 - Widgets take colours from `Theme.of(context)`, never from `AppColors`: `ColorScheme` roles, and
   the `AppExtraColors` theme extension for colours outside them (brand, summer and winter season).
-- Spacing comes from `AppSpacing`, never a literal. Shapes come from the component themes in
-  `AppTheme` (buttons, segmented buttons, the search bar and the navigation indicator are pills);
-  a widget with no component theme, such as a row group or a thumbnail, takes its radius from
-  `AppRadius`.
+- Spacing comes from `AppSpacing`, never a literal. The design's off-scale 6 and 10 (a tag's icon
+  gap and padding) are snapped to `xs` and `sm`, and its 72 is `xxxl + xxl`.
+- Cards have no margin: a list spaces its cards `AppSpacing.sm` apart inside `AppSpacing.md`
+  screen margins.
+- Shapes come from the component themes in `AppTheme` (buttons, segmented buttons, the search bar
+  and the navigation indicator are pills); a widget with no component theme, such as a row group
+  or a thumbnail, takes its radius from `AppRadius`.
 - Widgets hold no business logic and make no network calls. Presentation mappings (a colour or icon
   for a model value) live in `presentation/` extensions, not on models.
 - Errors: a sealed `Result`/`AppException`, not exceptions thrown through blocs.

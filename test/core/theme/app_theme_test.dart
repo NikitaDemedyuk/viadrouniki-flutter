@@ -164,6 +164,7 @@ void main() {
 
     test('spacing follows the 4-point scale', () {
       const steps = [
+        AppSpacing.xxxs,
         AppSpacing.xxs,
         AppSpacing.xs,
         AppSpacing.sm,
@@ -173,7 +174,7 @@ void main() {
         AppSpacing.xxl,
         AppSpacing.xxxl,
       ];
-      expect(steps, [4, 8, 12, 16, 20, 24, 32, 40]);
+      expect(steps, [2, 4, 8, 12, 16, 20, 24, 32, 40]);
     });
 
     test('radii follow the Material 3 shape scale', () {
@@ -223,6 +224,22 @@ void main() {
         );
       });
 
+      test('$name only unselected chips have an outline border', () {
+        final side = theme.chipTheme.side;
+        expect(
+          WidgetStateProperty.resolveAs(side, {})?.color,
+          theme.colorScheme.outline,
+        );
+        expect(
+          WidgetStateProperty.resolveAs(side, {WidgetState.selected})?.color,
+          Colors.transparent,
+        );
+      });
+
+      test('$name search bar is flat', () {
+        expect(theme.searchBarTheme.elevation?.resolve({}), 0);
+      });
+
       test('$name bottom sheets round only the top corners', () {
         expect(
           (theme.bottomSheetTheme.shape! as RoundedRectangleBorder)
@@ -230,14 +247,6 @@ void main() {
           const BorderRadius.vertical(
             top: Radius.circular(AppRadius.extraLarge),
           ),
-        );
-      });
-
-      test('$name inputs are extra small', () {
-        expect(
-          (theme.inputDecorationTheme.border! as OutlineInputBorder)
-              .borderRadius,
-          BorderRadius.circular(AppRadius.extraSmall),
         );
       });
     }

@@ -76,17 +76,28 @@ abstract final class AppTheme {
       colorScheme: colorScheme,
       extensions: [if (isDark) AppExtraColors.dark else AppExtraColors.light],
       cardTheme: const CardThemeData(
-        // Lists space their cards themselves; Card's default margin would
-        // add to that gap.
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(AppRadius.medium)),
         ),
       ),
-      chipTheme: const ChipThemeData(
-        shape: RoundedRectangleBorder(
+      chipTheme: ChipThemeData(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(AppRadius.small)),
         ),
+        // Material outlines unselected chips with outlineVariant; the design
+        // uses outline, which meets 3:1 against the background.
+        side: WidgetStateBorderSide.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return const BorderSide(color: Colors.transparent);
+          }
+          if (states.contains(WidgetState.disabled)) {
+            return BorderSide(
+              color: colorScheme.onSurface.withValues(alpha: 0.12),
+            );
+          }
+          return BorderSide(color: colorScheme.outline);
+        }),
       ),
       bottomSheetTheme: const BottomSheetThemeData(
         shape: RoundedRectangleBorder(
@@ -95,10 +106,8 @@ abstract final class AppTheme {
           ),
         ),
       ),
-      inputDecorationTheme: const InputDecorationTheme(
-        border: OutlineInputBorder(),
-      ),
       searchBarTheme: const SearchBarThemeData(
+        elevation: WidgetStatePropertyAll(0),
         shape: WidgetStatePropertyAll(_pill),
       ),
       navigationBarTheme: const NavigationBarThemeData(indicatorShape: _pill),
